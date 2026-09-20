@@ -38,8 +38,8 @@ export default function Footer() {
                             <LogoMark className="h-11 w-11" />
                             <div>
                                 <span className="block text-lg font-bold text-white">Marth Systems</span>
-                                <span className="block text-xs font-medium uppercase tracking-[0.22em] text-teal-300/80">
-                                    Accurate | Compliant | Connected
+                                <span className="block text-[0.62rem] font-medium uppercase tracking-[0.15em] text-teal-300/80 whitespace-nowrap mt-0.5">
+                                    Accurate · Compliant · Connected
                                 </span>
                             </div>
                         </Link>
