@@ -45,3 +45,12 @@ The destination inbox is determined exclusively by the server based on the selec
 3. **Sensitive Data Protection**: Never log free-text message contents to server logs or analytics providers.
 4. **Method Constraint**: Only `POST` requests are allowed; return `405 Method Not Allowed` for any other HTTP method.
 5. **Anti-Abuse**: Rate-limiting or Honeypot/Turnstile/reCAPTCHA can be integrated at the edge if needed.
+
+## Production Implementation (Netlify)
+
+- **Function Location**: `netlify/functions/contact.js`
+- **Routing**: `netlify.toml` rewrites `POST /api/contact` -> `/.netlify/functions/contact`
+- **Email Provider**: Resend (`https://api.resend.com/emails`)
+- **Required Environment Variable**: `RESEND_API_KEY` (configured securely in Netlify Site Configuration -> Environment Variables)
+- **Sender**: `Marth Systems <info@marthsystems.com>`
+
