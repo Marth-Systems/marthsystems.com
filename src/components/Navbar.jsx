@@ -13,6 +13,7 @@ const NAV_LINKS = [
     { label: "AR", full: "AR Management", path: "/ar-management" },
     { label: "PAR", full: "Prior Authorization", path: "/prior-authorization" },
     { label: "Support", full: "Patient Support", path: "/patient-support" },
+    { label: "Blog", full: "Blog", path: "/blog" },
 ];
 
 const DARK_HERO_ROUTES = new Set([
@@ -25,6 +26,7 @@ const DARK_HERO_ROUTES = new Set([
     "/patient-support",
     "/about",
     "/contact",
+    "/blog",
 ]);
 
 export default function Navbar() {
@@ -48,7 +50,7 @@ export default function Navbar() {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
-    const isDark = !scrolled && !open && DARK_HERO_ROUTES.has(location.pathname);
+    const isDark = !scrolled && !open && (DARK_HERO_ROUTES.has(location.pathname) || location.pathname.startsWith("/blog"));
 
     return (
         <header

@@ -18,6 +18,8 @@ import About from "@/pages/About";
 import Resources from "@/pages/Resources";
 import Contact from "@/pages/Contact";
 import ThankYou from "@/pages/ThankYou";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 
 function App() {
     return (
@@ -36,6 +38,8 @@ function App() {
                         <Route path="/patient-support" element={<PatientSupport />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/resources" element={<Resources />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/:slug" element={<BlogPost />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/thank-you" element={<ThankYou />} />
                     </Route>
