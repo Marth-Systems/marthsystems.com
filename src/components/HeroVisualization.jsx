@@ -77,7 +77,7 @@ export default function HeroVisualization() {
                     <span className="text-[0.65rem] font-medium text-slate-400">Live workflow</span>
                 </div>
 
-                <svg viewBox="0 0 280 450" className="mt-2 w-full" role="img" aria-label="Healthcare operations workflow visualization">
+                <svg viewBox="-85 0 375 450" className="mt-2 w-full" role="img" aria-label="Healthcare operations workflow visualization">
                     {/* connectors */}
                     {NODES.map((n, i) => (
                         <motion.path
