@@ -44,21 +44,21 @@ export default function Navbar() {
             className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-premium border-b border-white/40" : "bg-transparent"
                 }`}
         >
-            <nav className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <nav className="mx-auto max-w-7xl 2xl:max-w-[1440px] px-5 sm:px-6 lg:px-8 2xl:px-10">
                 <div className="flex h-16 lg:h-20 items-center justify-between">
                     <Link to="/" aria-label="Marth Systems home" className="shrink-0">
                         <Wordmark />
                     </Link>
 
                     {/* Desktop nav */}
-                    <div className="hidden xl:flex items-center gap-1">
+                    <div className="hidden xl:flex items-center gap-1.5 2xl:gap-3.5 mx-4 2xl:mx-8">
                         {NAV_LINKS.map((link) => (
                             <NavLink
                                 key={link.path}
                                 to={link.path}
                                 end={link.path === "/"}
                                 className={({ isActive }) =>
-                                    `px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive
+                                    `px-2.5 2xl:px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${isActive
                                         ? "text-teal-700"
                                         : "text-slate-600 hover:text-navy-900 hover:bg-slate-100/70"
                                     }`
@@ -69,7 +69,7 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    <div className="hidden xl:block">
+                    <div className="hidden xl:block shrink-0">
                         <Link
                             to="/contact"
                             onClick={() => trackEvent("primary_cta_click", { location: "navbar" })}
