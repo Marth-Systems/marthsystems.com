@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 210 50% 12%;
+        --card: 0 0% 100%;
+        --card-foreground: 210 50% 12%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 210 50% 12%;
+        --primary: 210 73% 14%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 40% 96%;
+        --secondary-foreground: 210 50% 12%;
+        --muted: 205 40% 96%;
+        --muted-foreground: 210 16% 40%;
+        --accent: 178 69% 41%;
+        --accent-foreground: 0 0% 100%;
+        --teal: 180 100% 25%;
+        --teal-bright: 172 100% 37%;
+        --navy: 210 73% 14%;
+        --navy-deep: 211 67% 8%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 210 30% 90%;
+        --input: 210 30% 88%;
+        --ring: 178 69% 41%;
+        --chart-1: 210 73% 14%;
+        --chart-2: 178 69% 41%;
+        --chart-3: 180 100% 25%;
+        --chart-4: 172 100% 37%;
+        --chart-5: 199 70% 50%;
+        --radius: 0.75rem;
+        --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        --font-mono: ui-monospace, SFMono-Regular, Menos, Monaco, Consolas, monospace;
+    }
+
+    .dark {
+        --background: 211 67% 8%;
+        --foreground: 0 0% 98%;
+        --card: 210 60% 11%;
+        --card-foreground: 0 0% 98%;
+        --popover: 210 60% 11%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 210 73% 14%;
+        --secondary: 210 40% 16%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 210 40% 16%;
+        --muted-foreground: 210 20% 70%;
+        --accent: 178 69% 41%;
+        --accent-foreground: 0 0% 100%;
+        --border: 210 30% 20%;
+        --input: 210 30% 20%;
+        --ring: 178 69% 41%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground font-body antialiased;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading tracking-tight;
+    }
+
+    ::selection {
+        background-color: hsl(var(--accent) / 0.25);
+    }
+}
+
+@layer components {
+    .container-px {
+        @apply px-5 sm:px-6 lg:px-8;
+    }
+
+    .section-px {
+        @apply px-5 sm:px-6 lg:px-8;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px) saturate(160%);
+        -webkit-backdrop-filter: blur(16px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .glass-dark {
+        background: rgba(10, 37, 64, 0.55);
+        backdrop-filter: blur(16px) saturate(160%);
+        -webkit-backdrop-filter: blur(16px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .text-gradient-teal {
+        background: linear-gradient(120deg, hsl(178 69% 41%), hsl(180 100% 25%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .bg-grid {
+        background-image:
+            linear-gradient(to right, hsl(var(--border) / 0.6) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border) / 0.6) 1px, transparent 1px);
+        background-size: 56px 56px;
+    }
+
+    .bg-grid-dark {
+        background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 56px 56px;
+    }
+
+    .shadow-premium {
+        box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -8px rgba(10, 37, 64, 0.12);
+    }
+
+    .shadow-premium-lg {
+        box-shadow: 0 1px 3px rgba(10, 37, 64, 0.05), 0 24px 48px -12px rgba(10, 37, 64, 0.18);
+    }
+
+    .hairline {
+        border: 1px solid hsl(var(--border));
+    }
+}
+
+@layer utilities {
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-dash {
+        stroke-dasharray: 6 6;
+        animation: dashmove 1.2s linear infinite;
+    }
+
+    @keyframes dashmove {
+        to {
+            stroke-dashoffset: -12;
+        }
+    }
+
+    .animate-pulse-soft {
+        animation: pulseSoft 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseSoft {
+
+        0%,
+        100% {
+            opacity: 0.5;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Marth Systems",
+    "short_name": "Marth",
+    "icons": [
+        {
+            "src": "https://media.base44.com/images/public/user_6a439e5e0b3fb5285c1c4fc9/8a5c6cc1b_android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://media.base44.com/images/public/user_6a439e5e0b3fb5285c1c4fc9/91634e4dd_android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#0A2540",
+    "background_color": "#0A2540",
+    "display": "standalone"
+}
