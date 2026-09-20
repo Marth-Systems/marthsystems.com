@@ -4,7 +4,7 @@ const NODES = [
     { x: 50, y: 40, label: "Credentialing", icon: "shield" },
     { x: 50, y: 130, label: "Billing", icon: "receipt" },
     { x: 50, y: 220, label: "AR Mgmt", icon: "chart" },
-    { x: 50, y: 310, label: "Prior Auth", icon: "check" },
+    { x: 50, y: 310, label: "PAR", icon: "check" },
     { x: 50, y: 400, label: "Patient Support", icon: "support" },
 ];
 

@@ -11,7 +11,7 @@ const NAV_LINKS = [
     { label: "Contracting", full: "Provider Contracting", path: "/provider-contracting" },
     { label: "Billing", full: "Billing", path: "/billing" },
     { label: "AR", full: "AR Management", path: "/ar-management" },
-    { label: "Prior Auth", full: "Prior Authorization", path: "/prior-authorization" },
+    { label: "PAR", full: "Prior Authorization", path: "/prior-authorization" },
     { label: "Support", full: "Patient Support", path: "/patient-support" },
     { label: "About", full: "About", path: "/about" },
     { label: "Resources", full: "Resources", path: "/resources" },
