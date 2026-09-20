@@ -15,6 +15,18 @@ const NAV_LINKS = [
     { label: "Support", full: "Patient Support", path: "/patient-support" },
 ];
 
+const DARK_HERO_ROUTES = new Set([
+    "/credentialing",
+    "/provider-enrollment",
+    "/provider-contracting",
+    "/billing",
+    "/ar-management",
+    "/prior-authorization",
+    "/patient-support",
+    "/about",
+    "/contact",
+]);
+
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
@@ -36,15 +48,18 @@ export default function Navbar() {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
+    const isDark = !scrolled && !open && DARK_HERO_ROUTES.has(location.pathname);
+
     return (
         <header
-            className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-premium border-b border-white/40" : "bg-transparent"
-                }`}
+            className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+                scrolled || open ? "glass shadow-premium border-b border-white/40" : "bg-transparent"
+            }`}
         >
             <nav className="mx-auto max-w-7xl 2xl:max-w-[1440px] px-5 sm:px-6 lg:px-8 2xl:px-10">
                 <div className="flex h-16 lg:h-20 items-center justify-between">
                     <Link to="/" aria-label="Marth Systems home" className="shrink-0">
-                        <Wordmark />
+                        <Wordmark light={isDark} />
                     </Link>
 
                     {/* Desktop nav */}
@@ -55,9 +70,12 @@ export default function Navbar() {
                                 to={link.path}
                                 end={link.path === "/"}
                                 className={({ isActive }) =>
-                                    `px-2.5 2xl:px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${isActive
-                                        ? "text-teal-700"
-                                        : "text-slate-600 hover:text-navy-900 hover:bg-slate-100/70"
+                                    `px-2.5 2xl:px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
+                                        isActive
+                                            ? isDark ? "text-teal-300 font-semibold" : "text-teal-700 font-semibold"
+                                            : isDark
+                                                ? "text-slate-200 hover:text-white hover:bg-white/10"
+                                                : "text-slate-600 hover:text-navy-900 hover:bg-slate-100/70"
                                     }`
                                 }
                             >
@@ -70,7 +88,11 @@ export default function Navbar() {
                         <Link
                             to="/contact"
                             onClick={() => trackEvent("primary_cta_click", { location: "navbar" })}
-                            className="group inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-sm font-semibold text-white shadow-premium transition-all hover:bg-navy-800 hover:shadow-premium-lg"
+                            className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-premium transition-all hover:shadow-premium-lg ${
+                                isDark
+                                    ? "bg-teal-500 text-navy-950 hover:bg-teal-400"
+                                    : "bg-navy-900 text-white hover:bg-navy-800"
+                            }`}
                         >
                             Request a Consultation
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -80,7 +102,9 @@ export default function Navbar() {
                     {/* Mobile toggle */}
                     <button
                         onClick={() => setOpen((v) => !v)}
-                        className="xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-navy-900 hover:bg-slate-100 transition-colors"
+                        className={`xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-md transition-colors ${
+                            isDark ? "text-white hover:bg-white/10" : "text-navy-900 hover:bg-slate-100"
+                        }`}
                         aria-label={open ? "Close menu" : "Open menu"}
                         aria-expanded={open}
                     >

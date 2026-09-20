@@ -20,15 +20,15 @@ export function LogoHorizontal({ className = "h-8" }) {
     );
 }
 
-export function Wordmark({ className = "" }) {
+export function Wordmark({ className = "", light = false }) {
     return (
         <div className={`flex items-center gap-2.5 ${className}`}>
             <LogoMark className="h-9 w-9" />
             <div className="leading-none">
-                <span className="block text-[1.05rem] font-bold tracking-tight text-navy-900">
-                    Marth<span className="text-teal-600"> Systems</span>
+                <span className={`block text-[1.05rem] font-bold tracking-tight transition-colors ${light ? "text-white" : "text-navy-900"}`}>
+                    Marth<span className={light ? "text-teal-400" : "text-teal-600"}> Systems</span>
                 </span>
-                <span className="block text-[0.6rem] font-medium uppercase tracking-[0.22em] text-slate-400 mt-0.5">
+                <span className={`block text-[0.6rem] font-medium uppercase tracking-[0.22em] mt-0.5 transition-colors ${light ? "text-slate-300" : "text-slate-400"}`}>
                     Accurate · Compliant · Connected
                 </span>
             </div>
