@@ -13,9 +13,6 @@ const NAV_LINKS = [
     { label: "AR", full: "AR Management", path: "/ar-management" },
     { label: "PAR", full: "Prior Authorization", path: "/prior-authorization" },
     { label: "Support", full: "Patient Support", path: "/patient-support" },
-    { label: "About", full: "About", path: "/about" },
-    { label: "Resources", full: "Resources", path: "/resources" },
-    { label: "Contact", full: "Contact", path: "/contact" },
 ];
 
 export default function Navbar() {
