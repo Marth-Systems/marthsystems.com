@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320">
+  <defs>
+    <linearGradient id="shield" x1="76" y1="35" x2="250" y2="275" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B2545"/>
+      <stop offset=".55" stop-color="#0B3B68"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" fill="transparent"/>
+  <g transform="translate(82,32) scale(.52)">
+    <path d="M256 75 C334 96 389 98 402 122 V238 C402 336 339 405 256 438 C173 405 110 336 110 238 V122 C123 98 178 96 256 75Z" fill="url(#shield)" stroke="#DFF7F4" stroke-width="9" opacity=".98"/>
+    <path d="M108 267 C162 208 278 190 401 219" fill="none" stroke="#F8FAFC" stroke-width="24" stroke-linecap="round" opacity=".95"/>
+    <path d="M103 274 C171 320 302 319 413 248" fill="none" stroke="#14B8A6" stroke-width="18" stroke-linecap="round" opacity=".9"/>
+    <text x="256" y="300" text-anchor="middle" font-family="Inter, Manrope, Arial, sans-serif" font-size="186" font-weight="900" fill="#FFFFFF" letter-spacing="-10">M</text>
+  </g>
+  <text x="330" y="151" font-family="Inter, Manrope, Arial, sans-serif" font-size="96" font-weight="850" fill="#0B2545" letter-spacing="-4">Marth</text>
+  <text x="334" y="235" font-family="Inter, Manrope, Arial, sans-serif" font-size="72" font-weight="650" fill="#0F766E" letter-spacing="-2">Systems</text>
+</svg>

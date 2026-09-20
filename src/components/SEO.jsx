@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const LOGO = "https://media.base44.com/images/public/6aae5b0689ccceec893c96a4/377fe2f6a_generated_image.png";
+const LOGO = "https://marthsystems.com/og-image.png";
 
 function setMeta(name, content, attr = "name") {
     let el = document.head.querySelector(`meta[${attr}="${name}"]`);

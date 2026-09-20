@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Mail, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import ScrollReveal from "@/components/ScrollReveal";
-import { base44 } from "@/api/base44Client";
 import { trackEvent } from "@/lib/analytics";
 
 const SERVICES = [
@@ -19,17 +18,6 @@ const SERVICES = [
 ];
 
 const PROVIDER_COUNTS = ["1–5", "6–15", "16–50", "51–100", "100+"];
-
-function routeEmail(service) {
-    if (!service) return "info@marthsystems.com";
-    if (service === "Credentialing" || service === "Provider Enrollment")
-        return "credentialing@marthsystems.com";
-    if (service === "Billing" || service === "AR Management")
-        return "billing@marthsystems.com";
-    if (service === "Prior Authorization" || service === "Patient Support")
-        return "support@marthsystems.com";
-    return "info@marthsystems.com";
-}
 
 export default function Contact() {
     const navigate = useNavigate();
@@ -55,27 +43,32 @@ export default function Contact() {
         setError("");
         setSubmitting(true);
         try {
-            const to = routeEmail(form.service);
-            const subject = `New inquiry from ${form.name || "website visitor"}${form.organization ? ` (${form.organization})` : ""}`;
-            const body = [
-                `Name: ${form.name}`,
-                `Organization: ${form.organization}`,
-                `Work Email: ${form.email}`,
-                `Phone: ${form.phone || "—"}`,
-                `Service Needed: ${form.service || "—"}`,
-                `Number of Providers: ${form.providers || "—"}`,
-                "",
-                "Message:",
-                form.message,
-            ].join("\n");
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: form.name.trim(),
+                    organization: form.organization.trim(),
+                    email: form.email.trim(),
+                    phone: form.phone.trim(),
+                    service: form.service,
+                    providers: form.providers,
+                    message: form.message.trim(),
+                }),
+            });
 
-            await base44.integrations.Core.SendEmail({ to, subject, body });
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                throw new Error(data.message || "Something went wrong sending your message. Please try again or email us directly.");
+            }
 
             trackEvent("contact_form_submit", { service: form.service || "not specified" });
 
             navigate("/thank-you", { state: { service: form.service } });
         } catch (err) {
-            setError("Something went wrong sending your message. Please try again or email us directly.");
+            setError(err.message || "Something went wrong sending your message. Please try again or email us directly.");
             setSubmitting(false);
         }
     };

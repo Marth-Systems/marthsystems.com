@@ -1,7 +1,7 @@
 export function LogoMark({ className = "h-9 w-9" }) {
     return (
         <img
-            src="https://media.base44.com/images/public/user_6a439e5e0b3fb5285c1c4fc9/e63abd8ae_logo-mark.svg"
+            src="/logo-mark.svg"
             alt="Marth Systems logo"
             className={className}
             loading="eager"
@@ -12,7 +12,7 @@ export function LogoMark({ className = "h-9 w-9" }) {
 export function LogoHorizontal({ className = "h-8" }) {
     return (
         <img
-            src="https://media.base44.com/images/public/user_6a439e5e0b3fb5285c1c4fc9/f5c109867_logo-horizontal.svg"
+            src="/logo-horizontal.svg"
             alt="Marth Systems"
             className={className}
             loading="eager"
