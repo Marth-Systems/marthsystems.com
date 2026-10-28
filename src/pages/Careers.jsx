@@ -21,6 +21,9 @@ import {
     HelpCircle,
     ChevronRight,
     Calendar,
+    UploadCloud,
+    Trash2,
+    Paperclip,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -127,7 +130,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "3+ years",
         postedAgo: "10 days ago",
-        postedDate: "Oct 19, 2026",
         description:
             "Drive primary source verification, CAQH profile lifecycle maintenance, and state licensing across multi-state physician and allied health rosters.",
         responsibilities: [
@@ -152,7 +154,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "2–4 years",
         postedAgo: "10 days ago",
-        postedDate: "Oct 19, 2026",
         description:
             "Manage charge entry, clearinghouse claim scrubbing, electronic filing, payment posting, and front-line denial mitigation for ambulatory practices.",
         responsibilities: [
@@ -177,7 +178,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "3+ years",
         postedAgo: "15 days ago",
-        postedDate: "Oct 14, 2026",
         description:
             "Analyze aging accounts receivable (60+, 90+, 120+ days), interpret CARC/RARC codes, and craft persuasive, evidence-based payer appeals to recover revenue.",
         responsibilities: [
@@ -202,7 +202,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "2+ years",
         postedAgo: "15 days ago",
-        postedDate: "Oct 14, 2026",
         description:
             "Coordinate timely prior authorization submissions for diagnostic imaging, surgical procedures, and specialty medications with commercial and government health plans.",
         responsibilities: [
@@ -227,7 +226,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "1–3 years",
         postedAgo: "20 days ago",
-        postedDate: "Oct 9, 2026",
         description:
             "Deliver empathetic, professional administrative communication for patient inquiries, insurance eligibility verifications, and statement explanations.",
         responsibilities: [
@@ -252,7 +250,6 @@ const OPEN_ROLES = [
         type: "Full-Time",
         experience: "4+ years",
         postedAgo: "20 days ago",
-        postedDate: "Oct 9, 2026",
         description:
             "Oversee day-to-day workflow milestones, conduct quality assurance audits on credentialing and billing deliverables, and mentor team specialists.",
         responsibilities: [
@@ -289,6 +286,9 @@ export default function Careers() {
     const [candidateExperience, setCandidateExperience] = useState("");
     const [candidateLinkedIn, setCandidateLinkedIn] = useState("");
     const [candidateNote, setCandidateNote] = useState("");
+    const [resumeFile, setResumeFile] = useState(null);
+    const [uploadError, setUploadError] = useState("");
+    const [applicationSubmitted, setApplicationSubmitted] = useState(false);
     const [copiedEmail, setCopiedEmail] = useState(false);
 
     const filteredRoles =
@@ -298,11 +298,33 @@ export default function Careers() {
 
     const handleOpenModal = (role) => {
         setActiveModalRole(role);
+        setResumeFile(null);
+        setUploadError("");
+        setApplicationSubmitted(false);
         trackEvent("career_role_view", { role: role.title });
     };
 
     const handleCloseModal = () => {
         setActiveModalRole(null);
+        setResumeFile(null);
+        setUploadError("");
+        setApplicationSubmitted(false);
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        if (file.size > 15 * 1024 * 1024) {
+            setUploadError("File size exceeds 15MB. Please upload a smaller document.");
+            return;
+        }
+        setUploadError("");
+        setResumeFile(file);
+    };
+
+    const handleRemoveFile = () => {
+        setResumeFile(null);
+        setUploadError("");
     };
 
     const handleCopyEmail = (email = "hr@marthsystems.com") => {
@@ -316,7 +338,7 @@ export default function Careers() {
         const bodyText = [
             `Hello Marth Systems HR Team,`,
             ``,
-            `I am excited to apply for the ${role.title} position.`,
+            `I am applying for the ${role.title} position.`,
             ``,
             `Candidate Details:`,
             `• Full Name: ${candidateName.trim() || "[Your Full Name]"}`,
@@ -324,10 +346,13 @@ export default function Careers() {
             `• Phone: ${candidatePhone.trim() || "[Your Phone Number]"}`,
             `• Years of Relevant Healthcare Experience: ${candidateExperience.trim() || "[e.g., 4 years]"}`,
             `• LinkedIn / Portfolio: ${candidateLinkedIn.trim() || "[Optional LinkedIn URL]"}`,
+            resumeFile
+                ? `• Attached Resume / CV: ${resumeFile.name} (${(resumeFile.size / 1024 / 1024).toFixed(2)} MB)`
+                : `• Resume / CV: [Attached]`,
             ``,
             `Why I am a strong fit for Marth Systems:`,
             candidateNote.trim() ||
-                `I have strong background in healthcare operations and share your dedication to accuracy, compliance, and structured execution. Please find my resume attached.`,
+                `I have a strong background in healthcare operations and share your dedication to accuracy, compliance, and structured execution. Please find my resume attached.`,
             ``,
             `Thank you for your time and consideration.`,
             ``,
@@ -545,7 +570,7 @@ export default function Careers() {
                                             </span>
                                             <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
                                                 <Calendar className="h-3.5 w-3.5 text-teal-600" />
-                                                Posted {role.postedAgo} ({role.postedDate})
+                                                Posted {role.postedAgo}
                                             </span>
                                         </div>
                                     </div>
@@ -704,7 +729,7 @@ export default function Careers() {
                                 </span>
                                 <span className="inline-flex items-center gap-1 text-teal-200">
                                     <Calendar className="h-3.5 w-3.5 text-teal-400" />
-                                    Posted {activeModalRole.postedAgo} ({activeModalRole.postedDate})
+                                    Posted {activeModalRole.postedAgo}
                                 </span>
                             </div>
                         </div>
@@ -821,6 +846,53 @@ export default function Careers() {
                                     </div>
                                     <div className="sm:col-span-2">
                                         <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                            Resume or CV (PDF, DOCX, DOC) *
+                                        </label>
+                                        {!resumeFile ? (
+                                            <label className="flex flex-col items-center justify-center border-2 border-dashed border-teal-300/80 bg-white hover:bg-teal-50/50 rounded-xl p-5 cursor-pointer transition-colors group">
+                                                <input
+                                                    type="file"
+                                                    accept=".pdf,.doc,.docx"
+                                                    className="hidden"
+                                                    onChange={handleFileChange}
+                                                />
+                                                <div className="flex items-center gap-2 text-teal-700 font-medium text-sm group-hover:text-teal-800">
+                                                    <UploadCloud className="h-5 w-5" />
+                                                    <span>Upload Resume or CV</span>
+                                                </div>
+                                                <p className="mt-1 text-xs text-slate-500">
+                                                    Click to browse or drop file (PDF, DOC, or DOCX up to 15MB)
+                                                </p>
+                                            </label>
+                                        ) : (
+                                            <div className="flex items-center justify-between rounded-xl border border-teal-200 bg-white p-3.5 shadow-xs">
+                                                <div className="flex items-center gap-3 overflow-hidden">
+                                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
+                                                        <FileText className="h-5 w-5" />
+                                                    </div>
+                                                    <div className="truncate">
+                                                        <p className="text-sm font-semibold text-slate-800 truncate">{resumeFile.name}</p>
+                                                        <p className="text-xs text-teal-700 font-medium">
+                                                            {(resumeFile.size / 1024 / 1024).toFixed(2)} MB · Ready to attach
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleRemoveFile}
+                                                    className="ml-3 p-1.5 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors"
+                                                    title="Remove file"
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </button>
+                                            </div>
+                                        )}
+                                        {uploadError && (
+                                            <p className="mt-1.5 text-xs text-red-600 font-medium">{uploadError}</p>
+                                        )}
+                                    </div>
+                                    <div className="sm:col-span-2">
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
                                             Brief Introduction / Relevant Experience
                                         </label>
                                         <textarea
@@ -836,9 +908,10 @@ export default function Careers() {
                                 <div className="mt-5 flex flex-col sm:flex-row items-center gap-3">
                                     <a
                                         href={generateMailto(activeModalRole)}
-                                        onClick={() =>
-                                            trackEvent("career_apply_click", { role: activeModalRole.title })
-                                        }
+                                        onClick={() => {
+                                            setApplicationSubmitted(true);
+                                            trackEvent("career_apply_click", { role: activeModalRole.title });
+                                        }}
                                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors"
                                     >
                                         Launch Application Email
@@ -848,6 +921,20 @@ export default function Careers() {
                                         Sends to <strong className="text-slate-800">hr@marthsystems.com</strong>
                                     </span>
                                 </div>
+
+                                {applicationSubmitted && (
+                                    <div className="mt-4 rounded-xl bg-teal-50 border border-teal-300 p-3.5 text-xs text-teal-900 flex items-start gap-2.5">
+                                        <CheckCircle2 className="h-4 w-4 text-teal-700 shrink-0 mt-0.5" />
+                                        <div>
+                                            <p className="font-semibold">Application email launched for hr@marthsystems.com!</p>
+                                            <p className="mt-0.5 text-teal-800">
+                                                {resumeFile
+                                                    ? `Please confirm "${resumeFile.name}" is attached in your email window before sending.`
+                                                    : 'Please attach your Resume/CV to the email before sending.'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
