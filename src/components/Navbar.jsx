@@ -13,7 +13,6 @@ const NAV_LINKS = [
     { label: "AR", full: "AR Management", path: "/ar-management" },
     { label: "PAR", full: "Prior Authorization", path: "/prior-authorization" },
     { label: "Support", full: "Patient Support", path: "/patient-support" },
-    { label: "Blog", full: "Blog", path: "/blog" },
 ];
 
 const DARK_HERO_ROUTES = new Set([

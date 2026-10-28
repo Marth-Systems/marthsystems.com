@@ -1062,20 +1062,11 @@ Healthcare administration is inherently complex and heavily regulated, but it do
 ];
 
 /**
- * Helper to check if an article is published as of currentDate
+ * Helper to check if an article is published.
+ * All articles are active and live with their respective publish dates.
  */
-export function isPostPublished(post, currentDate = new Date()) {
-    if (!post || !post.publishDate) return false;
-    const [year, month, day] = post.publishDate.split("-").map(Number);
-    const currYear = currentDate.getFullYear();
-    const currMonth = currentDate.getMonth() + 1;
-    const currDay = currentDate.getDate();
-
-    if (currYear > year) return true;
-    if (currYear < year) return false;
-    if (currMonth > month) return true;
-    if (currMonth < month) return false;
-    return currDay >= day;
+export function isPostPublished(post) {
+    return Boolean(post && post.publishDate);
 }
 
 /**
