@@ -324,8 +324,8 @@ export default function Careers() {
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
-        if (file.size > 15 * 1024 * 1024) {
-            setUploadError("File size exceeds 15MB. Please upload a smaller document.");
+        if (file.size > 5 * 1024 * 1024) {
+            setUploadError("File size exceeds 5MB limit. Please upload a smaller document.");
             return;
         }
         setUploadError("");
@@ -346,9 +346,17 @@ export default function Careers() {
     const readFileAsBase64 = (file) => {
         return new Promise((resolve) => {
             if (!file) return resolve(null);
-            if (file.size > 8 * 1024 * 1024) return resolve(null);
+            if (file.size > 5 * 1024 * 1024) return resolve(null);
             const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
+            reader.onload = () => {
+                const res = reader.result;
+                if (typeof res === "string") {
+                    const clean = res.includes(",") ? res.split(",")[1] : res;
+                    resolve(clean);
+                } else {
+                    resolve(null);
+                }
+            };
             reader.onerror = () => resolve(null);
             reader.readAsDataURL(file);
         });
@@ -856,27 +864,6 @@ export default function Careers() {
                                             Our talent team reviews every submission within 48 hours. If your background and experience align with our current operational needs, we will email you directly to schedule an initial video conversation.
                                         </p>
                                     </div>
-
-                                    <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={handleCloseModal}
-                                            className="rounded-full bg-teal-600 px-7 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors cursor-pointer"
-                                        >
-                                            Done
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => {
-                                                setSubmitSuccess(false);
-                                                setResumeFile(null);
-                                                setCandidateNote("");
-                                            }}
-                                            className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
-                                        >
-                                            Submit Another Application
-                                        </button>
-                                    </div>
                                 </div>
                             ) : (
                                 <>
@@ -1012,7 +999,7 @@ export default function Careers() {
                                                             <span>Upload Resume or CV</span>
                                                         </div>
                                                         <p className="mt-1 text-xs text-slate-500">
-                                                            Click to browse or drop file (PDF, DOC, or DOCX up to 15MB)
+                                                            Click to browse or drop file (PDF, DOC, or DOCX up to 5MB)
                                                         </p>
                                                     </label>
                                                 ) : (
@@ -1056,7 +1043,7 @@ export default function Careers() {
                                             </div>
                                         </div>
 
-                                        <div className="mt-5 flex flex-col sm:flex-row items-center gap-3">
+                                        <div className="mt-5">
                                             <button
                                                 type="button"
                                                 disabled={submitting}
@@ -1075,9 +1062,6 @@ export default function Careers() {
                                                     </>
                                                 )}
                                             </button>
-                                            <span className="text-xs text-slate-500">
-                                                Submitted directly to our HR team (<strong className="text-slate-800">hr@marthsystems.com</strong>)
-                                            </span>
                                         </div>
                                     </div>
                                 </>

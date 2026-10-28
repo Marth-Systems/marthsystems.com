@@ -35,19 +35,35 @@ async function processContactSubmission(body) {
     }
 
     try {
+        const attachments = [];
+        if (sanitized.resumeBase64 && sanitized.resumeName) {
+            const cleanBase64 = String(sanitized.resumeBase64)
+                .replace(/^data:[^;]+;base64,/, "")
+                .trim();
+            if (cleanBase64) {
+                attachments.push({
+                    filename: sanitized.resumeName,
+                    content: cleanBase64,
+                });
+            }
+        }
+
+        const emailPayload = {
+            from: "Marth Systems <info@marthsystems.com>",
+            to: [sanitized.recipient],
+            reply_to: sanitized.email,
+            subject,
+            text: emailText,
+            ...(attachments.length > 0 ? { attachments } : {}),
+        };
+
         const resendResponse = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                from: "Marth Systems <info@marthsystems.com>",
-                to: [sanitized.recipient],
-                reply_to: sanitized.email,
-                subject,
-                text: emailText,
-            }),
+            body: JSON.stringify(emailPayload),
         });
 
         if (!resendResponse.ok) {
