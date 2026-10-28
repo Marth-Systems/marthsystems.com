@@ -90,6 +90,9 @@ export function validateContactPayload(body) {
             providers: providers ? String(providers).trim().slice(0, 50) : "",
             message: message ? String(message).trim().slice(0, 5000) : "",
             recipient,
+            ...(body.resumeName ? { resumeName: String(body.resumeName).slice(0, 200) } : {}),
+            ...(body.resumeSize ? { resumeSize: Number(body.resumeSize) } : {}),
+            ...(body.resumeBase64 ? { resumeBase64: String(body.resumeBase64) } : {}),
         },
     };
 }
@@ -98,18 +101,22 @@ export function validateContactPayload(body) {
  * Formats inquiry email subject and plaintext body.
  */
 export function formatInquiryEmail(sanitized) {
-    const subject = `New inquiry from ${sanitized.name}${sanitized.organization ? ` (${sanitized.organization})` : ""}`;
+    const isCareer = sanitized.service === "Careers" || sanitized.service === "Human Resources";
+    const subject = isCareer
+        ? `Career Application: ${sanitized.name}${sanitized.organization ? ` (${sanitized.organization})` : ""}`
+        : `New inquiry from ${sanitized.name}${sanitized.organization ? ` (${sanitized.organization})` : ""}`;
     const body = [
         `Name: ${sanitized.name}`,
         `Organization: ${sanitized.organization}`,
-        `Work Email: ${sanitized.email}`,
+        `Email: ${sanitized.email}`,
         `Phone: ${sanitized.phone || "—"}`,
-        `Service Needed: ${sanitized.service || "—"}`,
-        `Number of Providers: ${sanitized.providers || "—"}`,
+        `Service / Category: ${sanitized.service || "—"}`,
+        sanitized.providers ? `Experience / Providers: ${sanitized.providers}` : null,
+        sanitized.resumeName ? `Attached Resume / CV: ${sanitized.resumeName}` : null,
         "",
-        "Message:",
+        "Message / Details:",
         sanitized.message || "(No message provided)",
-    ].join("\n");
+    ].filter(Boolean).join("\n");
 
     return { subject, body };
 }

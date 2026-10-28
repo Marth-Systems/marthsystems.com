@@ -24,6 +24,7 @@ import {
     UploadCloud,
     Trash2,
     Paperclip,
+    AlertCircle,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -288,8 +289,13 @@ export default function Careers() {
     const [candidateNote, setCandidateNote] = useState("");
     const [resumeFile, setResumeFile] = useState(null);
     const [uploadError, setUploadError] = useState("");
-    const [applicationSubmitted, setApplicationSubmitted] = useState(false);
     const [copiedEmail, setCopiedEmail] = useState(false);
+
+    // In-app application submission states
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState("");
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [submittedDetails, setSubmittedDetails] = useState(null);
 
     const filteredRoles =
         selectedDept === "All Departments"
@@ -300,7 +306,9 @@ export default function Careers() {
         setActiveModalRole(role);
         setResumeFile(null);
         setUploadError("");
-        setApplicationSubmitted(false);
+        setSubmitError("");
+        setSubmitSuccess(false);
+        setSubmittedDetails(null);
         trackEvent("career_role_view", { role: role.title });
     };
 
@@ -308,7 +316,9 @@ export default function Careers() {
         setActiveModalRole(null);
         setResumeFile(null);
         setUploadError("");
-        setApplicationSubmitted(false);
+        setSubmitError("");
+        setSubmitSuccess(false);
+        setSubmittedDetails(null);
     };
 
     const handleFileChange = (e) => {
@@ -333,34 +343,101 @@ export default function Careers() {
         setTimeout(() => setCopiedEmail(false), 2000);
     };
 
-    const generateMailto = (role) => {
-        const subject = encodeURIComponent(`Application: ${role.title} — ${candidateName.trim() || "Candidate"}`);
-        const bodyText = [
-            `Hello Marth Systems HR Team,`,
-            ``,
-            `I am applying for the ${role.title} position.`,
-            ``,
-            `Candidate Details:`,
-            `• Full Name: ${candidateName.trim() || "[Your Full Name]"}`,
-            `• Email: ${candidateEmail.trim() || "[Your Email]"}`,
-            `• Phone: ${candidatePhone.trim() || "[Your Phone Number]"}`,
-            `• Years of Relevant Healthcare Experience: ${candidateExperience.trim() || "[e.g., 4 years]"}`,
-            `• LinkedIn / Portfolio: ${candidateLinkedIn.trim() || "[Optional LinkedIn URL]"}`,
-            resumeFile
-                ? `• Attached Resume / CV: ${resumeFile.name} (${(resumeFile.size / 1024 / 1024).toFixed(2)} MB)`
-                : `• Resume / CV: [Attached]`,
-            ``,
-            `Why I am a strong fit for Marth Systems:`,
-            candidateNote.trim() ||
-                `I have a strong background in healthcare operations and share your dedication to accuracy, compliance, and structured execution. Please find my resume attached.`,
-            ``,
-            `Thank you for your time and consideration.`,
-            ``,
-            `Sincerely,`,
-            candidateName.trim() || "[Your Name]",
-        ].join("\n");
+    const readFileAsBase64 = (file) => {
+        return new Promise((resolve) => {
+            if (!file) return resolve(null);
+            if (file.size > 8 * 1024 * 1024) return resolve(null);
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(file);
+        });
+    };
 
-        return `mailto:hr@marthsystems.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+    const handleSubmitApplication = async (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        setSubmitError("");
+
+        if (!candidateName.trim()) {
+            setSubmitError("Please enter your full name.");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!candidateEmail.trim() || !emailRegex.test(candidateEmail.trim())) {
+            setSubmitError("Please enter a valid email address.");
+            return;
+        }
+
+        setSubmitting(true);
+
+        try {
+            let resumeBase64 = null;
+            if (resumeFile) {
+                try {
+                    resumeBase64 = await readFileAsBase64(resumeFile);
+                } catch {
+                    // Non-blocking fallback
+                }
+            }
+
+            const formattedMessage = [
+                `Role Applied: ${activeModalRole.title}`,
+                `Department: ${activeModalRole.department}`,
+                `Candidate Name: ${candidateName.trim()}`,
+                `Candidate Email: ${candidateEmail.trim()}`,
+                `Phone: ${candidatePhone.trim() || "Not provided"}`,
+                `Healthcare Experience: ${candidateExperience.trim() || "Not specified"}`,
+                `LinkedIn / Portfolio: ${candidateLinkedIn.trim() || "Not provided"}`,
+                resumeFile
+                    ? `Uploaded Resume / CV: ${resumeFile.name} (${(resumeFile.size / 1024 / 1024).toFixed(2)} MB)`
+                    : `Uploaded Resume / CV: None attached`,
+                ``,
+                `Candidate Introduction / Notes:`,
+                candidateNote.trim() || `(No additional note provided)`,
+            ].join("\n");
+
+            const payload = {
+                name: candidateName.trim(),
+                organization: `Candidate — ${activeModalRole.title}`,
+                email: candidateEmail.trim(),
+                phone: candidatePhone.trim(),
+                service: "Careers",
+                providers: candidateExperience.trim() || "N/A",
+                message: formattedMessage,
+                resumeName: resumeFile ? resumeFile.name : null,
+                resumeSize: resumeFile ? resumeFile.size : null,
+                ...(resumeBase64 ? { resumeBase64 } : {}),
+            };
+
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                throw new Error(data.error || data.message || "Failed to submit application. Please try again or email us directly at hr@marthsystems.com.");
+            }
+
+            trackEvent("career_application_submit", { role: activeModalRole.title });
+
+            setSubmittedDetails({
+                name: candidateName.trim(),
+                email: candidateEmail.trim(),
+                roleTitle: activeModalRole.title,
+                department: activeModalRole.department,
+                resumeName: resumeFile ? resumeFile.name : null,
+            });
+            setSubmitSuccess(true);
+        } catch (err) {
+            setSubmitError(err.message || "Something went wrong submitting your application. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -736,206 +813,275 @@ export default function Careers() {
 
                         {/* Body - Scrollable */}
                         <div className="overflow-y-auto p-6 sm:p-8 space-y-6 text-slate-700">
-                            <div>
-                                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
-                                    Role Overview
-                                </h3>
-                                <p className="mt-2 text-base leading-relaxed text-slate-700">
-                                    {activeModalRole.description}
-                                </p>
-                            </div>
+                            {submitSuccess ? (
+                                <div className="py-8 text-center flex flex-col items-center">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-700 shadow-inner">
+                                        <CheckCircle2 className="h-9 w-9" />
+                                    </div>
+                                    <h3 className="mt-5 text-2xl font-bold text-navy-900">
+                                        Application Submitted Successfully!
+                                    </h3>
+                                    <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-600">
+                                        Thank you, <strong className="text-slate-900">{submittedDetails?.name}</strong>. Your application for <strong className="text-slate-900">{submittedDetails?.roleTitle}</strong> has been submitted directly to our Human Resources team.
+                                    </p>
 
-                            <div>
-                                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
-                                    Key Responsibilities
-                                </h3>
-                                <ul className="mt-3 space-y-2.5">
-                                    {activeModalRole.responsibilities.map((r, i) => (
-                                        <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                                            <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
-                                            <span>{r}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
-                                    Qualifications & Skills
-                                </h3>
-                                <ul className="mt-3 space-y-2.5">
-                                    {activeModalRole.qualifications.map((q, i) => (
-                                        <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                                            <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
-                                            <span>{q}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* Direct Application Form Generator */}
-                            <div className="rounded-2xl border border-teal-200 bg-teal-50/50 p-6">
-                                <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2">
-                                    <Send className="h-5 w-5 text-teal-700" />
-                                    Quick Application via Email
-                                </h3>
-                                <p className="mt-1 text-xs text-slate-600">
-                                    Fill in your details below to pre-populate an application email. You can attach your resume directly from your email client.
-                                </p>
-
-                                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Full Name *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={candidateName}
-                                            onChange={(e) => setCandidateName(e.target.value)}
-                                            placeholder="Jane Doe"
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Email Address *
-                                        </label>
-                                        <input
-                                            type="email"
-                                            value={candidateEmail}
-                                            onChange={(e) => setCandidateEmail(e.target.value)}
-                                            placeholder="jane@example.com"
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Phone Number
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            value={candidatePhone}
-                                            onChange={(e) => setCandidatePhone(e.target.value)}
-                                            placeholder="(555) 000-0000"
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Years in Healthcare Operations
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={candidateExperience}
-                                            onChange={(e) => setCandidateExperience(e.target.value)}
-                                            placeholder="e.g., 3 years"
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            LinkedIn / Online Profile (Optional)
-                                        </label>
-                                        <input
-                                            type="url"
-                                            value={candidateLinkedIn}
-                                            onChange={(e) => setCandidateLinkedIn(e.target.value)}
-                                            placeholder="https://linkedin.com/in/username"
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Resume or CV (PDF, DOCX, DOC) *
-                                        </label>
-                                        {!resumeFile ? (
-                                            <label className="flex flex-col items-center justify-center border-2 border-dashed border-teal-300/80 bg-white hover:bg-teal-50/50 rounded-xl p-5 cursor-pointer transition-colors group">
-                                                <input
-                                                    type="file"
-                                                    accept=".pdf,.doc,.docx"
-                                                    className="hidden"
-                                                    onChange={handleFileChange}
-                                                />
-                                                <div className="flex items-center gap-2 text-teal-700 font-medium text-sm group-hover:text-teal-800">
-                                                    <UploadCloud className="h-5 w-5" />
-                                                    <span>Upload Resume or CV</span>
-                                                </div>
-                                                <p className="mt-1 text-xs text-slate-500">
-                                                    Click to browse or drop file (PDF, DOC, or DOCX up to 15MB)
-                                                </p>
-                                            </label>
-                                        ) : (
-                                            <div className="flex items-center justify-between rounded-xl border border-teal-200 bg-white p-3.5 shadow-xs">
-                                                <div className="flex items-center gap-3 overflow-hidden">
-                                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
-                                                        <FileText className="h-5 w-5" />
-                                                    </div>
-                                                    <div className="truncate">
-                                                        <p className="text-sm font-semibold text-slate-800 truncate">{resumeFile.name}</p>
-                                                        <p className="text-xs text-teal-700 font-medium">
-                                                            {(resumeFile.size / 1024 / 1024).toFixed(2)} MB · Ready to attach
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    onClick={handleRemoveFile}
-                                                    className="ml-3 p-1.5 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors"
-                                                    title="Remove file"
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </button>
-                                            </div>
-                                        )}
-                                        {uploadError && (
-                                            <p className="mt-1.5 text-xs text-red-600 font-medium">{uploadError}</p>
-                                        )}
-                                    </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                            Brief Introduction / Relevant Experience
-                                        </label>
-                                        <textarea
-                                            rows={3}
-                                            value={candidateNote}
-                                            onChange={(e) => setCandidateNote(e.target.value)}
-                                            placeholder="Tell us briefly about your experience, EHR/clearinghouse systems you know, or certifications..."
-                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="mt-5 flex flex-col sm:flex-row items-center gap-3">
-                                    <a
-                                        href={generateMailto(activeModalRole)}
-                                        onClick={() => {
-                                            setApplicationSubmitted(true);
-                                            trackEvent("career_apply_click", { role: activeModalRole.title });
-                                        }}
-                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors"
-                                    >
-                                        Launch Application Email
-                                        <ArrowRight className="h-4 w-4" />
-                                    </a>
-                                    <span className="text-xs text-slate-500">
-                                        Sends to <strong className="text-slate-800">hr@marthsystems.com</strong>
-                                    </span>
-                                </div>
-
-                                {applicationSubmitted && (
-                                    <div className="mt-4 rounded-xl bg-teal-50 border border-teal-300 p-3.5 text-xs text-teal-900 flex items-start gap-2.5">
-                                        <CheckCircle2 className="h-4 w-4 text-teal-700 shrink-0 mt-0.5" />
-                                        <div>
-                                            <p className="font-semibold">Application email launched for hr@marthsystems.com!</p>
-                                            <p className="mt-0.5 text-teal-800">
-                                                {resumeFile
-                                                    ? `Please confirm "${resumeFile.name}" is attached in your email window before sending.`
-                                                    : 'Please attach your Resume/CV to the email before sending.'}
-                                            </p>
+                                    <div className="mt-6 w-full max-w-md rounded-2xl border border-teal-200 bg-teal-50/60 p-5 text-left text-xs text-slate-700 space-y-2.5">
+                                        <div className="flex justify-between border-b border-teal-100 pb-2">
+                                            <span className="text-slate-500">Position</span>
+                                            <span className="font-semibold text-slate-800">{submittedDetails?.roleTitle}</span>
+                                        </div>
+                                        <div className="flex justify-between border-b border-teal-100 pb-2">
+                                            <span className="text-slate-500">Department</span>
+                                            <span className="font-semibold text-slate-800">{submittedDetails?.department}</span>
+                                        </div>
+                                        <div className="flex justify-between border-b border-teal-100 pb-2">
+                                            <span className="text-slate-500">Applicant Email</span>
+                                            <span className="font-semibold text-slate-800">{submittedDetails?.email}</span>
+                                        </div>
+                                        <div className="flex justify-between border-b border-teal-100 pb-2">
+                                            <span className="text-slate-500">Resume / CV</span>
+                                            <span className="font-semibold text-teal-800">
+                                                {submittedDetails?.resumeName || "Not attached"}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between pt-1">
+                                            <span className="text-slate-500">Routed To</span>
+                                            <span className="font-semibold text-slate-800">hr@marthsystems.com</span>
                                         </div>
                                     </div>
-                                )}
-                            </div>
+
+                                    <div className="mt-6 max-w-md rounded-xl bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 text-left">
+                                        <p className="font-semibold text-slate-800 mb-1">What to expect next?</p>
+                                        <p>
+                                            Our talent team reviews every submission within 48 hours. If your background and experience align with our current operational needs, we will email you directly to schedule an initial video conversation.
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handleCloseModal}
+                                            className="rounded-full bg-teal-600 px-7 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors cursor-pointer"
+                                        >
+                                            Done
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setSubmitSuccess(false);
+                                                setResumeFile(null);
+                                                setCandidateNote("");
+                                            }}
+                                            className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+                                        >
+                                            Submit Another Application
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                    <div>
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                            Role Overview
+                                        </h3>
+                                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                                            {activeModalRole.description}
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                            Key Responsibilities
+                                        </h3>
+                                        <ul className="mt-3 space-y-2.5">
+                                            {activeModalRole.responsibilities.map((r, i) => (
+                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                                                    <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
+                                                    <span>{r}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                            Qualifications & Skills
+                                        </h3>
+                                        <ul className="mt-3 space-y-2.5">
+                                            {activeModalRole.qualifications.map((q, i) => (
+                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                                                    <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
+                                                    <span>{q}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Direct Application Form */}
+                                    <div className="rounded-2xl border border-teal-200 bg-teal-50/50 p-6">
+                                        <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2">
+                                            <Send className="h-5 w-5 text-teal-700" />
+                                            Apply for this Position
+                                        </h3>
+                                        <p className="mt-1 text-xs text-slate-600">
+                                            Fill in your details and attach your resume or CV below. Your application will be submitted directly to our Human Resources team.
+                                        </p>
+
+                                        {submitError && (
+                                            <div className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 border border-red-200 p-3 text-xs text-red-700">
+                                                <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                                                <span>{submitError}</span>
+                                            </div>
+                                        )}
+
+                                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Full Name *
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={candidateName}
+                                                    onChange={(e) => setCandidateName(e.target.value)}
+                                                    placeholder="Jane Doe"
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Email Address *
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    value={candidateEmail}
+                                                    onChange={(e) => setCandidateEmail(e.target.value)}
+                                                    placeholder="jane@example.com"
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Phone Number
+                                                </label>
+                                                <input
+                                                    type="tel"
+                                                    value={candidatePhone}
+                                                    onChange={(e) => setCandidatePhone(e.target.value)}
+                                                    placeholder="(555) 000-0000"
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Years in Healthcare Operations
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={candidateExperience}
+                                                    onChange={(e) => setCandidateExperience(e.target.value)}
+                                                    placeholder="e.g., 3 years"
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    LinkedIn / Online Profile (Optional)
+                                                </label>
+                                                <input
+                                                    type="url"
+                                                    value={candidateLinkedIn}
+                                                    onChange={(e) => setCandidateLinkedIn(e.target.value)}
+                                                    placeholder="https://linkedin.com/in/username"
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Resume or CV (PDF, DOCX, DOC)
+                                                </label>
+                                                {!resumeFile ? (
+                                                    <label className="flex flex-col items-center justify-center border-2 border-dashed border-teal-300/80 bg-white hover:bg-teal-50/50 rounded-xl p-5 cursor-pointer transition-colors group">
+                                                        <input
+                                                            type="file"
+                                                            accept=".pdf,.doc,.docx"
+                                                            className="hidden"
+                                                            onChange={handleFileChange}
+                                                        />
+                                                        <div className="flex items-center gap-2 text-teal-700 font-medium text-sm group-hover:text-teal-800">
+                                                            <UploadCloud className="h-5 w-5" />
+                                                            <span>Upload Resume or CV</span>
+                                                        </div>
+                                                        <p className="mt-1 text-xs text-slate-500">
+                                                            Click to browse or drop file (PDF, DOC, or DOCX up to 15MB)
+                                                        </p>
+                                                    </label>
+                                                ) : (
+                                                    <div className="flex items-center justify-between rounded-xl border border-teal-200 bg-white p-3.5 shadow-xs">
+                                                        <div className="flex items-center gap-3 overflow-hidden">
+                                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
+                                                                <FileText className="h-5 w-5" />
+                                                            </div>
+                                                            <div className="truncate">
+                                                                <p className="text-sm font-semibold text-slate-800 truncate">{resumeFile.name}</p>
+                                                                <p className="text-xs text-teal-700 font-medium">
+                                                                    {(resumeFile.size / 1024 / 1024).toFixed(2)} MB · Ready to attach
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <button
+                                                            type="button"
+                                                            onClick={handleRemoveFile}
+                                                            className="ml-3 p-1.5 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                                                            title="Remove file"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </button>
+                                                    </div>
+                                                )}
+                                                {uploadError && (
+                                                    <p className="mt-1.5 text-xs text-red-600 font-medium">{uploadError}</p>
+                                                )}
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                    Brief Introduction / Relevant Experience
+                                                </label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={candidateNote}
+                                                    onChange={(e) => setCandidateNote(e.target.value)}
+                                                    placeholder="Tell us briefly about your experience, EHR/clearinghouse systems you know, or certifications..."
+                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-5 flex flex-col sm:flex-row items-center gap-3">
+                                            <button
+                                                type="button"
+                                                disabled={submitting}
+                                                onClick={handleSubmitApplication}
+                                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-7 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                                            >
+                                                {submitting ? (
+                                                    <>
+                                                        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                                        Submitting Application...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Submit Application
+                                                        <ArrowRight className="h-4 w-4" />
+                                                    </>
+                                                )}
+                                            </button>
+                                            <span className="text-xs text-slate-500">
+                                                Submitted directly to our HR team (<strong className="text-slate-800">hr@marthsystems.com</strong>)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
 
                         {/* Footer */}
