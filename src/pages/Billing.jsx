@@ -37,7 +37,7 @@ export default function Billing() {
                 eyebrow="Medical Billing"
                 title="Billing workflows that keep your revenue cycle moving."
                 description="Marth Systems manages the billing cycle from charge capture through payment posting and denial management — with accurate claim preparation, consistent follow-up, and clear reporting so you always know where things stand."
-                email="billing@marthsystems.com"
+                email="contact@marthsystems.com"
                 ctaText="Talk to Our Billing Team"
             />
 
@@ -109,8 +109,8 @@ export default function Billing() {
                 title="Talk to Our Billing Team."
                 description="Let's discuss how Marth Systems can support your billing workflow and revenue cycle."
                 buttonText="Talk to Our Billing Team"
-                email="billing@marthsystems.com"
-                emailLabel="billing@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

@@ -15,19 +15,19 @@
  */
 
 export const DEPARTMENT_ROUTING = {
-    "Credentialing": "credentialing@marthsystems.com",
-    "Provider Enrollment": "credentialing@marthsystems.com",
-    "Billing": "billing@marthsystems.com",
-    "AR Management": "billing@marthsystems.com",
-    "Prior Authorization": "support@marthsystems.com",
-    "Patient Support": "support@marthsystems.com",
-    "Provider Contracting": "info@marthsystems.com",
-    "Contracting": "info@marthsystems.com",
-    "Multiple Services": "info@marthsystems.com",
+    "Credentialing": "contact@marthsystems.com",
+    "Provider Enrollment": "contact@marthsystems.com",
+    "Billing": "contact@marthsystems.com",
+    "AR Management": "contact@marthsystems.com",
+    "Prior Authorization": "contact@marthsystems.com",
+    "Patient Support": "contact@marthsystems.com",
+    "Provider Contracting": "contact@marthsystems.com",
+    "Contracting": "contact@marthsystems.com",
+    "Multiple Services": "contact@marthsystems.com",
     "Other": "info@marthsystems.com",
 };
 
-export const DEFAULT_RECIPIENT = "info@marthsystems.com";
+export const DEFAULT_RECIPIENT = "contact@marthsystems.com";
 
 /**
  * Resolves the appropriate Marth Systems department recipient for a given service.

@@ -15,7 +15,7 @@ Validation & Department Routing (server/contact-handler.js)
   ↓
 Server-side Email Provider (Resend / SendGrid / Postmark / AWS SES / SMTP)
   ↓
-Destination Department Inbox (e.g., credentialing@marthsystems.com)
+Destination Department Inbox (e.g., contact@marthsystems.com)
   ↓
 JSON response `{ success: true }` sent to browser
   ↓
@@ -28,14 +28,14 @@ The destination inbox is determined exclusively by the server based on the selec
 
 | Service Selected | Destination Inbox |
 |---|---|
-| Credentialing | `credentialing@marthsystems.com` |
-| Provider Enrollment | `credentialing@marthsystems.com` |
-| Billing | `billing@marthsystems.com` |
-| AR Management | `billing@marthsystems.com` |
-| Prior Authorization | `support@marthsystems.com` |
-| Patient Support | `support@marthsystems.com` |
-| Provider Contracting | `info@marthsystems.com` |
-| Multiple Services | `info@marthsystems.com` |
+| Credentialing | `contact@marthsystems.com` |
+| Provider Enrollment | `contact@marthsystems.com` |
+| Billing | `contact@marthsystems.com` |
+| AR Management | `contact@marthsystems.com` |
+| Prior Authorization | `contact@marthsystems.com` |
+| Patient Support | `contact@marthsystems.com` |
+| Provider Contracting | `contact@marthsystems.com` |
+| Multiple Services | `contact@marthsystems.com` |
 | Other / No selection | `info@marthsystems.com` |
 
 ## Security & Privacy Requirements

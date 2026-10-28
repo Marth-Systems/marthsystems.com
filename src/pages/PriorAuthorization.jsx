@@ -42,7 +42,7 @@ export default function PriorAuthorization() {
                 eyebrow="Prior Authorization"
                 title="Administrative prior authorization support."
                 description="Prior authorization requirements can stall scheduled services and frustrate patients and staff. Marth Systems provides administrative support to coordinate documentation, submit requests, follow up with payers, and track status — so your team isn't buried in authorization paperwork."
-                email="support@marthsystems.com"
+                email="contact@marthsystems.com"
                 ctaText="Discuss Authorization Support"
             />
 
@@ -100,8 +100,8 @@ export default function PriorAuthorization() {
                 title="Need Prior Authorization Support?"
                 description="Let's talk about how Marth Systems can help coordinate and track your prior authorization workload."
                 buttonText="Discuss Authorization Support"
-                email="support@marthsystems.com"
-                emailLabel="support@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

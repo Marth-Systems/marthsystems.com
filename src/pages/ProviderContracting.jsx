@@ -258,8 +258,8 @@ export default function ProviderContracting() {
                 title="Need More Visibility Into Your Contracting Workflow?"
                 description="Let's discuss how Marth Systems can support the administrative side of your provider contracting process."
                 buttonText="Discuss Contracting Support"
-                email="info@marthsystems.com"
-                emailLabel="info@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

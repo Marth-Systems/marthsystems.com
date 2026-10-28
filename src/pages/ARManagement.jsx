@@ -38,7 +38,7 @@ export default function ARManagement() {
                 eyebrow="AR Management"
                 title="Bring structure to your accounts receivable."
                 description="Outstanding AR quietly ages when internal teams are stretched. Marth Systems brings a structured, repeatable workflow to analyze, prioritize, and follow up on your AR — so balances get worked instead of ignored."
-                email="billing@marthsystems.com"
+                email="contact@marthsystems.com"
                 ctaText="Let's Review Your AR Workflow"
             />
 
@@ -96,8 +96,8 @@ export default function ARManagement() {
                 title="Let's Review Your AR Workflow."
                 description="See how Marth Systems can bring structure and follow-up to your outstanding accounts receivable."
                 buttonText="Let's Review Your AR Workflow"
-                email="billing@marthsystems.com"
-                emailLabel="billing@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

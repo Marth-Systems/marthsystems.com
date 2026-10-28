@@ -19,9 +19,7 @@ const COMPANY = [
 ];
 
 const EMAILS = [
-    { label: "Credentialing", email: "credentialing@marthsystems.com" },
-    { label: "Billing", email: "billing@marthsystems.com" },
-    { label: "Support", email: "support@marthsystems.com" },
+    { label: "Contact", email: "contact@marthsystems.com" },
     { label: "General", email: "info@marthsystems.com" },
 ];
 
@@ -35,7 +33,7 @@ export default function Footer() {
                 <div className="grid gap-12 lg:grid-cols-12">
                     <div className="lg:col-span-4">
                         <Link to="/" className="flex items-center gap-3" aria-label="Marth Systems home">
-                            <LogoMark className="h-11 w-11" />
+                            <LogoMark className="h-10 w-auto" />
                             <div>
                                 <span className="block text-lg font-bold text-white">Marth Systems</span>
                                 <span className="block text-[0.62rem] font-medium uppercase tracking-[0.15em] text-teal-300/80 whitespace-nowrap mt-0.5">

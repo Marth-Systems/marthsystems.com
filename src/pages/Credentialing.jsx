@@ -51,7 +51,7 @@ export default function Credentialing() {
                 eyebrow="Credentialing & Enrollment"
                 title="Credentialing that keeps your providers ready to practice."
                 description="From primary source verification to payer enrollment and ongoing recredentialing, Marth Systems manages the credentialing process with accuracy and compliance in mind — so your providers can see patients and bill without avoidable delays."
-                email="credentialing@marthsystems.com"
+                email="contact@marthsystems.com"
                 ctaText="Talk to Our Credentialing Team"
             />
 
@@ -138,8 +138,8 @@ export default function Credentialing() {
                 title="Talk to Our Credentialing Team."
                 description="Find out how Marth Systems can support your provider credentialing and payer enrollment workflows."
                 buttonText="Talk to Our Credentialing Team"
-                email="credentialing@marthsystems.com"
-                emailLabel="credentialing@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

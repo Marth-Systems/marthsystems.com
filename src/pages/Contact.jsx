@@ -171,15 +171,13 @@ export default function Contact() {
                         <div className="lg:col-span-5">
                             <ScrollReveal delay={0.1}>
                                 <div className="rounded-3xl border border-slate-200 bg-slate-50 p-7 sm:p-8">
-                                    <h2 className="text-xl font-semibold text-navy-900">Contact by service</h2>
+                                    <h2 className="text-xl font-semibold text-navy-900">Direct Inquiries</h2>
                                     <p className="mt-2 text-sm leading-relaxed text-slate-600">
                                         Prefer to reach out directly? Use the address that matches your need.
                                     </p>
                                     <ul className="mt-6 space-y-4">
                                         {[
-                                            { label: "Credentialing & Enrollment", email: "credentialing@marthsystems.com" },
-                                            { label: "Billing & AR", email: "billing@marthsystems.com" },
-                                            { label: "Prior Authorization & Patient Support", email: "support@marthsystems.com" },
+                                            { label: "Operations & Client Inquiries", email: "contact@marthsystems.com" },
                                             { label: "General Inquiries", email: "info@marthsystems.com" },
                                         ].map((c) => (
                                             <li key={c.email} className="flex items-start gap-3">

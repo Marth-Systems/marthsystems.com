@@ -30,7 +30,7 @@ export default function PatientSupport() {
                 eyebrow="Patient Support"
                 title="Administrative patient support that keeps communication clear."
                 description="Patients expect timely, clear answers — but administrative inquiries can overwhelm front-office teams. Marth Systems provides administrative and operational patient support to handle inquiries, billing questions, and follow-up communication so your staff can focus on in-person care."
-                email="support@marthsystems.com"
+                email="contact@marthsystems.com"
                 ctaText="Talk to Our Support Team"
             />
 
@@ -84,8 +84,8 @@ export default function PatientSupport() {
                 title="Talk to Our Support Team."
                 description="Let's discuss how Marth Systems can provide administrative patient support for your practice."
                 buttonText="Talk to Our Support Team"
-                email="support@marthsystems.com"
-                emailLabel="support@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

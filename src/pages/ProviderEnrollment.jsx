@@ -242,8 +242,8 @@ export default function ProviderEnrollment() {
                 title="Discuss Provider Enrollment."
                 description="Let's talk about how Marth Systems can support the administrative side of your provider enrollment workflow."
                 buttonText="Discuss Provider Enrollment"
-                email="credentialing@marthsystems.com"
-                emailLabel="credentialing@marthsystems.com"
+                email="contact@marthsystems.com"
+                emailLabel="contact@marthsystems.com"
             />
         </>
     );

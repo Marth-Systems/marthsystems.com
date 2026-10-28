@@ -1,9 +1,9 @@
-export function LogoMark({ className = "h-9 w-9" }) {
+export function LogoMark({ className = "h-9 w-auto" }) {
     return (
         <img
             src="/logo-mark.svg"
             alt="Marth Systems logo"
-            className={className}
+            className={`${className} object-contain`}
             loading="eager"
         />
     );
@@ -23,7 +23,7 @@ export function LogoHorizontal({ className = "h-8" }) {
 export function Wordmark({ className = "", light = false }) {
     return (
         <div className={`flex items-center gap-2.5 ${className}`}>
-            <LogoMark className="h-9 w-9" />
+            <LogoMark className="h-9 w-auto" />
             <div className="leading-none">
                 <span className={`block text-[1.05rem] font-bold tracking-tight transition-colors ${light ? "text-white" : "text-navy-900"}`}>
                     Marth<span className={light ? "text-teal-400" : "text-teal-600"}> Systems</span>
