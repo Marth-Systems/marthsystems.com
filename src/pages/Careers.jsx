@@ -30,9 +30,9 @@ import { trackEvent } from "@/lib/analytics";
 const BENEFITS = [
     {
         icon: Laptop,
-        title: "100% Remote-First Culture",
+        title: "100% Global Remote Culture",
         description:
-            "Work from anywhere across the United States. We provide collaborative cloud tooling, home-office stipends, and flexible schedules that honor your productivity.",
+            "Work from anywhere across the world. We are a truly global team providing collaborative cloud tooling, home-office stipends, and flexible schedules that support team members in every time zone.",
     },
     {
         icon: GraduationCap,
@@ -123,7 +123,7 @@ const OPEN_ROLES = [
         id: "senior-credentialing-specialist",
         title: "Senior Credentialing & Enrollment Specialist",
         department: "Credentialing & Enrollment",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "3+ years",
         description:
@@ -146,7 +146,7 @@ const OPEN_ROLES = [
         id: "medical-billing-specialist",
         title: "Medical Billing & Revenue Cycle Specialist",
         department: "Billing & Revenue Cycle",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "2–4 years",
         description:
@@ -169,7 +169,7 @@ const OPEN_ROLES = [
         id: "ar-denial-analyst",
         title: "Accounts Receivable (AR) & Denial Resolution Analyst",
         department: "Billing & Revenue Cycle",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "3+ years",
         description:
@@ -192,7 +192,7 @@ const OPEN_ROLES = [
         id: "prior-auth-coordinator",
         title: "Prior Authorization Coordinator",
         department: "Clinical Administration",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "2+ years",
         description:
@@ -215,7 +215,7 @@ const OPEN_ROLES = [
         id: "patient-support-specialist",
         title: "Patient Support & Intake Representative",
         department: "Operations & Patient Care",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "1–3 years",
         description:
@@ -238,7 +238,7 @@ const OPEN_ROLES = [
         id: "operations-qa-lead",
         title: "Healthcare Operations Team Lead / QA Auditor",
         department: "Operations & Quality",
-        location: "Remote (US)",
+        location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "4+ years",
         description:
@@ -329,8 +329,8 @@ export default function Careers() {
     return (
         <>
             <SEO
-                title="Careers at Marth Systems — Healthcare Operations & Administration Roles"
-                description="Explore remote careers at Marth Systems. Join our dedicated team of medical credentialing specialists, billing analysts, prior authorization coordinators, and healthcare operations leaders."
+                title="Careers at Marth Systems — Global Healthcare Operations & Administration Roles"
+                description="Explore remote careers across the globe at Marth Systems. We provide healthcare operations and administrative services to organizations worldwide and hire talented professionals from everywhere."
                 path="/careers"
             />
 
@@ -345,23 +345,23 @@ export default function Careers() {
                         <ScrollReveal>
                             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">
                                 <Sparkles className="h-3.5 w-3.5 text-teal-400" />
-                                Careers at Marth Systems
+                                Global Careers at Marth Systems
                             </span>
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.06}>
                             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] text-white">
                                 Do work that powers <br className="hidden sm:inline" />
-                                modern healthcare.
+                                healthcare worldwide.
                             </h1>
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.12}>
                             <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-300">
                                 Healthcare administration is the mission-critical foundation of patient care.
-                                At Marth Systems, we bring structure, accuracy, and dignity to credentialing,
-                                billing, AR, and clinical authorizations. Join our remote team and build a career
-                                you can be proud of.
+                                At Marth Systems, we deliver operational excellence to healthcare providers
+                                across the world. Join our global remote team and build a meaningful career
+                                from anywhere across the globe.
                             </p>
                         </ScrollReveal>
 
@@ -389,7 +389,7 @@ export default function Careers() {
                             <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-white/10">
                                 <div>
                                     <div className="text-2xl font-bold text-white">100%</div>
-                                    <div className="text-xs text-slate-400 mt-0.5">Remote Flexibility (US)</div>
+                                    <div className="text-xs text-slate-400 mt-0.5">Global Remote (Worldwide)</div>
                                 </div>
                                 <div>
                                     <div className="text-2xl font-bold text-teal-300">Sponsored</div>
@@ -622,10 +622,10 @@ export default function Careers() {
                         Don&apos;t see your specific role?
                     </span>
                     <h2 className="mt-4 text-3xl sm:text-4xl font-bold">
-                        We are always looking for exceptional operations talent.
+                        We provide services across the world and hire from everywhere.
                     </h2>
                     <p className="mt-4 max-w-2xl mx-auto text-base text-slate-300 leading-relaxed">
-                        If you are an experienced credentialing specialist, medical coder, billing supervisor, or prior authorization coordinator, we would love to hear from you. Send us your resume and a brief introduction.
+                        We are a global team delivering healthcare operations to organizations worldwide. Whether you are an experienced credentialing specialist, medical coder, billing supervisor, or prior authorization coordinator, we welcome talented professionals from all countries. Send us your resume and a brief introduction.
                     </p>
 
                     <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
