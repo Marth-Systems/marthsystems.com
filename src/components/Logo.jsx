@@ -9,17 +9,6 @@ export function LogoMark({ className = "h-9 w-auto" }) {
     );
 }
 
-export function LogoHorizontal({ className = "h-8" }) {
-    return (
-        <img
-            src="/logo-horizontal.svg"
-            alt="Marth Systems"
-            className={className}
-            loading="eager"
-        />
-    );
-}
-
 export function Wordmark({ className = "", light = false }) {
     return (
         <div className={`flex items-center gap-2.5 ${className}`}>
