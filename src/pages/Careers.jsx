@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
     Briefcase,
-    MapPin,
     Clock,
     ArrowRight,
     CheckCircle2,
@@ -37,9 +36,9 @@ const BENEFITS = [
     },
     {
         icon: GraduationCap,
-        title: "Certification Sponsorship",
+        title: "Continuous Professional Learning",
         description:
-            "We invest directly in your career. We fully sponsor professional credentials and continuing education through AAPC (CPC), NAMSS (CPCS, CPMSM), and HFMA (CRCR).",
+            "Work alongside seasoned operations managers and specialists. We provide hands-on peer mentorship, workflow training, and ongoing operational skill building.",
     },
     {
         icon: ShieldCheck,
@@ -124,7 +123,7 @@ const OPEN_ROLES = [
         id: "senior-credentialing-specialist",
         title: "Senior Credentialing & Enrollment Specialist",
         department: "Credentialing & Enrollment",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "3+ years",
         postedAgo: "10 days ago",
@@ -149,7 +148,7 @@ const OPEN_ROLES = [
         id: "medical-billing-specialist",
         title: "Medical Billing & Revenue Cycle Specialist",
         department: "Billing & Revenue Cycle",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "2–4 years",
         postedAgo: "10 days ago",
@@ -174,7 +173,7 @@ const OPEN_ROLES = [
         id: "ar-denial-analyst",
         title: "Accounts Receivable (AR) & Denial Resolution Analyst",
         department: "Billing & Revenue Cycle",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "3+ years",
         postedAgo: "15 days ago",
@@ -199,7 +198,7 @@ const OPEN_ROLES = [
         id: "prior-auth-coordinator",
         title: "Prior Authorization Coordinator",
         department: "Clinical Administration",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "2+ years",
         postedAgo: "15 days ago",
@@ -224,7 +223,7 @@ const OPEN_ROLES = [
         id: "patient-support-specialist",
         title: "Patient Support & Intake Representative",
         department: "Operations & Patient Care",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "1–3 years",
         postedAgo: "20 days ago",
@@ -249,7 +248,7 @@ const OPEN_ROLES = [
         id: "operations-qa-lead",
         title: "Healthcare Operations Team Lead / QA Auditor",
         department: "Operations & Quality",
-        location: "Remote (Worldwide)",
+        location: "Remote",
         type: "Full-Time",
         experience: "4+ years",
         postedAgo: "20 days ago",
@@ -306,7 +305,7 @@ export default function Careers() {
         setActiveModalRole(null);
     };
 
-    const handleCopyEmail = (email = "contact@marthsystems.com") => {
+    const handleCopyEmail = (email = "hr@marthsystems.com") => {
         navigator.clipboard.writeText(email);
         setCopiedEmail(true);
         setTimeout(() => setCopiedEmail(false), 2000);
@@ -315,9 +314,9 @@ export default function Careers() {
     const generateMailto = (role) => {
         const subject = encodeURIComponent(`Application: ${role.title} — ${candidateName.trim() || "Candidate"}`);
         const bodyText = [
-            `Hello Marth Systems Talent Team,`,
+            `Hello Marth Systems HR Team,`,
             ``,
-            `I am excited to apply for the ${role.title} position (${role.location}).`,
+            `I am excited to apply for the ${role.title} position.`,
             ``,
             `Candidate Details:`,
             `• Full Name: ${candidateName.trim() || "[Your Full Name]"}`,
@@ -336,7 +335,7 @@ export default function Careers() {
             candidateName.trim() || "[Your Name]",
         ].join("\n");
 
-        return `mailto:contact@marthsystems.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+        return `mailto:hr@marthsystems.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
     };
 
     return (
@@ -389,7 +388,7 @@ export default function Careers() {
                                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </a>
                                 <a
-                                    href="mailto:contact@marthsystems.com?subject=General%20Career%20Inquiry%20%E2%80%94%20Marth%20Systems"
+                                    href="mailto:hr@marthsystems.com?subject=General%20Career%20Inquiry%20%E2%80%94%20Marth%20Systems"
                                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                                 >
                                     Send General Resume
@@ -405,8 +404,8 @@ export default function Careers() {
                                     <div className="text-xs text-slate-400 mt-0.5">Global Remote (Worldwide)</div>
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-teal-300">Sponsored</div>
-                                    <div className="text-xs text-slate-400 mt-0.5">AAPC & NAMSS Certs</div>
+                                    <div className="text-2xl font-bold text-teal-300">Mentorship</div>
+                                    <div className="text-xs text-slate-400 mt-0.5">Ongoing Learning</div>
                                 </div>
                                 <div>
                                     <div className="text-2xl font-bold text-white">Structure</div>
@@ -541,10 +540,6 @@ export default function Careers() {
 
                                         <div className="mt-5 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                                             <span className="inline-flex items-center gap-1">
-                                                <MapPin className="h-3.5 w-3.5 text-teal-600" />
-                                                {role.location}
-                                            </span>
-                                            <span className="inline-flex items-center gap-1">
                                                 <Clock className="h-3.5 w-3.5 text-teal-600" />
                                                 {role.type}
                                             </span>
@@ -584,10 +579,10 @@ export default function Careers() {
                                 your profile active for upcoming openings.
                             </p>
                             <a
-                                href="mailto:contact@marthsystems.com?subject=General%20Application%20Inquiry"
+                                href="mailto:hr@marthsystems.com?subject=General%20Application%20Inquiry"
                                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-teal-600 px-5 py-2.5 text-xs font-semibold text-white hover:bg-teal-700"
                             >
-                                Send Resume to contact@marthsystems.com
+                                Send Resume to hr@marthsystems.com
                             </a>
                         </div>
                     )}
@@ -647,14 +642,14 @@ export default function Careers() {
 
                     <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                            href="mailto:contact@marthsystems.com?subject=General%20Application%20%E2%80%94%20Marth%20Systems"
+                            href="mailto:hr@marthsystems.com?subject=General%20Application%20%E2%80%94%20Marth%20Systems"
                             className="inline-flex items-center gap-2 rounded-full bg-teal-500 px-7 py-3 text-sm font-semibold text-navy-950 hover:bg-teal-400 transition-colors shadow-premium"
                         >
-                            Email Resume to contact@marthsystems.com
+                            Email Resume to hr@marthsystems.com
                             <Send className="h-4 w-4" />
                         </a>
                         <button
-                            onClick={() => handleCopyEmail("contact@marthsystems.com")}
+                            onClick={() => handleCopyEmail("hr@marthsystems.com")}
                             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
                         >
                             {copiedEmail ? (
@@ -699,10 +694,6 @@ export default function Careers() {
                                 {activeModalRole.title}
                             </h2>
                             <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-slate-300">
-                                <span className="inline-flex items-center gap-1">
-                                    <MapPin className="h-3.5 w-3.5 text-teal-400" />
-                                    {activeModalRole.location}
-                                </span>
                                 <span className="inline-flex items-center gap-1">
                                     <Clock className="h-3.5 w-3.5 text-teal-400" />
                                     {activeModalRole.type}
@@ -854,7 +845,7 @@ export default function Careers() {
                                         <ArrowRight className="h-4 w-4" />
                                     </a>
                                     <span className="text-xs text-slate-500">
-                                        Sends to <strong className="text-slate-800">contact@marthsystems.com</strong>
+                                        Sends to <strong className="text-slate-800">hr@marthsystems.com</strong>
                                     </span>
                                 </div>
                             </div>

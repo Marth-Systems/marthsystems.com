@@ -24,6 +24,8 @@ export const DEPARTMENT_ROUTING = {
     "Provider Contracting": "contact@marthsystems.com",
     "Contracting": "contact@marthsystems.com",
     "Multiple Services": "contact@marthsystems.com",
+    "Careers": "hr@marthsystems.com",
+    "Human Resources": "hr@marthsystems.com",
     "Other": "info@marthsystems.com",
 };
 
