@@ -55,6 +55,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://marthsystems.com/careers</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://marthsystems.com/resources</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>

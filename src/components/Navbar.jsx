@@ -24,6 +24,7 @@ const DARK_HERO_ROUTES = new Set([
     "/prior-authorization",
     "/patient-support",
     "/about",
+    "/careers",
     "/contact",
     "/blog",
 ]);

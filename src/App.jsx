@@ -15,6 +15,7 @@ import ARManagement from "@/pages/ARManagement";
 import PriorAuthorization from "@/pages/PriorAuthorization";
 import PatientSupport from "@/pages/PatientSupport";
 import About from "@/pages/About";
+import Careers from "@/pages/Careers";
 import Resources from "@/pages/Resources";
 import Contact from "@/pages/Contact";
 import ThankYou from "@/pages/ThankYou";
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/prior-authorization" element={<PriorAuthorization />} />
                         <Route path="/patient-support" element={<PatientSupport />} />
                         <Route path="/about" element={<About />} />
+                        <Route path="/careers" element={<Careers />} />
                         <Route path="/resources" element={<Resources />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:slug" element={<BlogPost />} />

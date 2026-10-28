@@ -14,6 +14,7 @@ const SERVICES = [
 
 const COMPANY = [
     { label: "About", path: "/about" },
+    { label: "Careers", path: "/careers" },
     { label: "Resources", path: "/resources" },
     { label: "Contact", path: "/contact" },
 ];
