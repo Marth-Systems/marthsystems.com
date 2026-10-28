@@ -21,6 +21,7 @@ import {
     Building2,
     HelpCircle,
     ChevronRight,
+    Calendar,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -126,6 +127,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "3+ years",
+        postedAgo: "10 days ago",
+        postedDate: "Oct 19, 2026",
         description:
             "Drive primary source verification, CAQH profile lifecycle maintenance, and state licensing across multi-state physician and allied health rosters.",
         responsibilities: [
@@ -149,6 +152,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "2–4 years",
+        postedAgo: "10 days ago",
+        postedDate: "Oct 19, 2026",
         description:
             "Manage charge entry, clearinghouse claim scrubbing, electronic filing, payment posting, and front-line denial mitigation for ambulatory practices.",
         responsibilities: [
@@ -172,6 +177,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "3+ years",
+        postedAgo: "15 days ago",
+        postedDate: "Oct 14, 2026",
         description:
             "Analyze aging accounts receivable (60+, 90+, 120+ days), interpret CARC/RARC codes, and craft persuasive, evidence-based payer appeals to recover revenue.",
         responsibilities: [
@@ -195,6 +202,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "2+ years",
+        postedAgo: "15 days ago",
+        postedDate: "Oct 14, 2026",
         description:
             "Coordinate timely prior authorization submissions for diagnostic imaging, surgical procedures, and specialty medications with commercial and government health plans.",
         responsibilities: [
@@ -218,6 +227,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "1–3 years",
+        postedAgo: "20 days ago",
+        postedDate: "Oct 9, 2026",
         description:
             "Deliver empathetic, professional administrative communication for patient inquiries, insurance eligibility verifications, and statement explanations.",
         responsibilities: [
@@ -241,6 +252,8 @@ const OPEN_ROLES = [
         location: "Remote (Worldwide)",
         type: "Full-Time",
         experience: "4+ years",
+        postedAgo: "20 days ago",
+        postedDate: "Oct 9, 2026",
         description:
             "Oversee day-to-day workflow milestones, conduct quality assurance audits on credentialing and billing deliverables, and mentor team specialists.",
         responsibilities: [
@@ -526,7 +539,7 @@ export default function Careers() {
                                             {role.description}
                                         </p>
 
-                                        <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                                        <div className="mt-5 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
                                             <span className="inline-flex items-center gap-1">
                                                 <MapPin className="h-3.5 w-3.5 text-teal-600" />
                                                 {role.location}
@@ -534,6 +547,10 @@ export default function Careers() {
                                             <span className="inline-flex items-center gap-1">
                                                 <Clock className="h-3.5 w-3.5 text-teal-600" />
                                                 {role.type}
+                                            </span>
+                                            <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
+                                                <Calendar className="h-3.5 w-3.5 text-teal-600" />
+                                                Posted {role.postedAgo} ({role.postedDate})
                                             </span>
                                         </div>
                                     </div>
@@ -693,6 +710,10 @@ export default function Careers() {
                                 <span className="inline-flex items-center gap-1">
                                     <Briefcase className="h-3.5 w-3.5 text-teal-400" />
                                     {activeModalRole.experience}
+                                </span>
+                                <span className="inline-flex items-center gap-1 text-teal-200">
+                                    <Calendar className="h-3.5 w-3.5 text-teal-400" />
+                                    Posted {activeModalRole.postedAgo} ({activeModalRole.postedDate})
                                 </span>
                             </div>
                         </div>
