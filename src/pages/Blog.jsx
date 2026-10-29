@@ -63,7 +63,6 @@ export default function Blog() {
                         </ScrollReveal>
                         <ScrollReveal delay={0.06}>
                             <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.06] tracking-tight text-white">
-                                Marth Systems{" "}
                                 <span className="bg-gradient-to-r from-teal-300 via-cyan-400 to-sky-300 bg-clip-text text-transparent">
                                     Blog
                                 </span>
