@@ -11,10 +11,10 @@ export default function CTASection({
     emailLabel,
 }) {
     return (
-        <section className="relative overflow-hidden bg-navy-900 py-20 sm:py-28">
-            <div className="absolute inset-0 bg-grid-dark opacity-30" />
-            <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-teal-500/15 blur-3xl" />
-            <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-teal-400/10 blur-3xl" />
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#040A1C] via-[#060E28] to-[#030712] py-20 sm:py-28 border-t border-white/10 text-white">
+            <div className="absolute inset-0 bg-grid-dark opacity-25" />
+            <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-teal-500/15 blur-[120px]" />
+            <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-cyan-500/15 blur-[120px]" />
             <div className="relative mx-auto max-w-4xl px-5 sm:px-6 lg:px-8 text-center">
                 <ScrollReveal>
                     <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight text-white">
@@ -31,7 +31,7 @@ export default function CTASection({
                         <Link
                             to="/contact"
                             onClick={() => trackEvent("service_cta_click", { cta: buttonText })}
-                            className="group inline-flex items-center gap-2 rounded-full bg-teal-500 px-7 py-3.5 text-base font-semibold text-navy-950 shadow-premium-lg transition-all hover:bg-teal-400 hover:scale-[1.02]"
+                            className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-8 py-4 text-base font-bold text-navy-950 shadow-premium transition-all hover:brightness-110 hover:scale-[1.02]"
                         >
                             {buttonText}
                             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -40,7 +40,7 @@ export default function CTASection({
                             <a
                                 href={`mailto:${email}`}
                                 onClick={() => trackEvent("email_cta_click", { cta: buttonText })}
-                                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
                             >
                                 {emailLabel || email}
                             </a>

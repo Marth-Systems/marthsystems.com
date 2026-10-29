@@ -449,7 +449,7 @@ export default function Careers() {
     };
 
     return (
-        <>
+        <div className="bg-[#040A1C] text-slate-100 min-h-screen overflow-x-hidden">
             <SEO
                 title="Careers at Marth Systems — Global Healthcare Operations & Administration Roles"
                 description="Explore remote careers across the globe at Marth Systems. We provide healthcare operations and administrative services to organizations worldwide and hire talented professionals from everywhere."
@@ -457,24 +457,26 @@ export default function Careers() {
             />
 
             {/* HERO SECTION */}
-            <section className="relative overflow-hidden bg-navy-900 pt-28 pb-20 sm:pt-36 sm:pb-28">
-                <div className="absolute inset-0 bg-grid-dark opacity-30" />
-                <div className="absolute -right-32 -top-20 h-96 w-96 rounded-full bg-teal-500/15 blur-3xl" />
-                <div className="absolute -left-20 bottom-0 h-80 w-80 rounded-full bg-teal-400/10 blur-3xl" />
+            <section className="relative overflow-hidden bg-[#040A1C] pt-32 pb-24 sm:pt-40 sm:pb-32 border-b border-white/10">
+                <div className="pointer-events-none absolute -left-36 top-10 h-[480px] w-[480px] rounded-full bg-cyan-500/15 blur-[130px] animate-ambient-slow" />
+                <div className="pointer-events-none absolute -right-32 top-20 h-[460px] w-[460px] rounded-full bg-teal-400/15 blur-[130px] animate-ambient-reverse" />
+                <div className="absolute inset-0 bg-grid-dark opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_85%)]" />
 
                 <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <div className="max-w-3xl">
                         <ScrollReveal>
-                            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">
+                            <span className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-300 backdrop-blur-md">
                                 <Sparkles className="h-3.5 w-3.5 text-teal-400" />
                                 Global Careers at Marth Systems
                             </span>
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.06}>
-                            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] text-white">
+                            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.06] tracking-tight text-white">
                                 Do work that powers <br className="hidden sm:inline" />
-                                healthcare worldwide.
+                                <span className="bg-gradient-to-r from-teal-300 via-cyan-400 to-sky-300 bg-clip-text text-transparent">
+                                    healthcare worldwide.
+                                </span>
                             </h1>
                         </ScrollReveal>
 
@@ -488,18 +490,18 @@ export default function Careers() {
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.18}>
-                            <div className="mt-8 flex flex-wrap items-center gap-4">
+                            <div className="mt-9 flex flex-wrap items-center gap-4">
                                 <a
                                     href="#open-roles"
                                     onClick={() => trackEvent("careers_hero_explore_click")}
-                                    className="group inline-flex items-center gap-2 rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-navy-950 shadow-premium transition-all hover:bg-teal-400 hover:scale-[1.02]"
+                                    className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-8 py-4 text-base font-bold text-navy-950 shadow-premium transition-all hover:brightness-110 hover:scale-[1.02]"
                                 >
                                     Explore Open Positions
                                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </a>
                                 <a
                                     href="mailto:hr@marthsystems.com?subject=General%20Career%20Inquiry%20%E2%80%94%20Marth%20Systems"
-                                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/40"
                                 >
                                     Send General Resume
                                 </a>
@@ -508,21 +510,21 @@ export default function Careers() {
 
                         {/* Quick Stats Pill Row */}
                         <ScrollReveal delay={0.24}>
-                            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-white/10">
+                            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-white/10">
                                 <div>
-                                    <div className="text-2xl font-bold text-white">100%</div>
+                                    <div className="text-2xl font-extrabold text-white">100%</div>
                                     <div className="text-xs text-slate-400 mt-0.5">Global Remote (Worldwide)</div>
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-teal-300">Mentorship</div>
+                                    <div className="text-2xl font-extrabold text-teal-300">Mentorship</div>
                                     <div className="text-xs text-slate-400 mt-0.5">Ongoing Learning</div>
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-white">Structure</div>
+                                    <div className="text-2xl font-extrabold text-white">Structure</div>
                                     <div className="text-xs text-slate-400 mt-0.5">No Chaos or Firefighting</div>
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-teal-300">Growth</div>
+                                    <div className="text-2xl font-extrabold text-teal-300">Growth</div>
                                     <div className="text-xs text-slate-400 mt-0.5">Merit-Driven Pathways</div>
                                 </div>
                             </div>
@@ -532,24 +534,27 @@ export default function Careers() {
             </section>
 
             {/* CULTURE & BENEFITS SECTION */}
-            <section className="bg-slate-50 py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute -left-20 top-20 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="Why Marth Systems"
                         title="Built for professionals who care about doing work right."
                         description="We treat our people with the same accuracy, respect, and consistency that we bring to our healthcare partners."
+                        light={true}
                     />
 
-                    <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {BENEFITS.map((b, idx) => (
                             <ScrollReveal key={b.title} delay={idx * 0.05}>
-                                <div className="h-full rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all hover:shadow-md hover:border-teal-200 flex flex-col justify-between">
+                                <div className="group h-full rounded-[28px] border border-white/10 bg-slate-900/75 p-7 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-400/60 hover:bg-slate-900/95 flex flex-col justify-between">
                                     <div>
-                                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-teal-300 border border-white/10 transition-colors group-hover:bg-gradient-to-tr group-hover:from-teal-500 group-hover:to-cyan-400 group-hover:text-navy-950">
                                             <b.icon className="h-6 w-6" />
                                         </div>
-                                        <h3 className="mt-5 text-lg font-bold text-navy-900">{b.title}</h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                                        <h3 className="mt-5 text-lg font-bold text-white">{b.title}</h3>
+                                        <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
                                             {b.description}
                                         </p>
                                     </div>
@@ -561,8 +566,10 @@ export default function Careers() {
             </section>
 
             {/* CORE VALUES IN ACTION */}
-            <section className="bg-white py-20 sm:py-24 border-y border-slate-200/60">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#040A1C] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute right-10 top-20 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
                         <div className="lg:col-span-5">
                             <SectionHeading
@@ -570,9 +577,10 @@ export default function Careers() {
                                 title="A culture defined by three clear words."
                                 description="Whether analyzing a denial code, reviewing a physician dossier, or supporting a colleague, these principles shape our daily decisions."
                                 align="left"
+                                light={true}
                             />
-                            <div className="mt-6 flex items-center gap-3 text-xs text-slate-500">
-                                <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0" />
+                            <div className="mt-6 flex items-center gap-3 text-xs text-slate-400">
+                                <CheckCircle2 className="h-4 w-4 text-teal-400 shrink-0" />
                                 <span>Applied across all operational departments and client partnerships.</span>
                             </div>
                         </div>
@@ -580,14 +588,14 @@ export default function Careers() {
                         <div className="lg:col-span-7 grid gap-5">
                             {VALUES.map((val, idx) => (
                                 <ScrollReveal key={val.title} delay={idx * 0.08}>
-                                    <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 transition-all hover:bg-white hover:shadow-premium">
+                                    <div className="rounded-[28px] border border-white/10 bg-slate-900/75 p-7 shadow-xl backdrop-blur-xl transition-all hover:border-teal-400/60 hover:bg-slate-900/95">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-xl font-bold text-navy-900">{val.title}</span>
-                                            <span className="rounded-full bg-teal-100/70 px-3 py-1 text-xs font-semibold text-teal-800">
+                                            <span className="text-xl font-bold text-white">{val.title}</span>
+                                            <span className="rounded-full border border-teal-500/30 bg-teal-500/15 px-3 py-1 text-xs font-bold text-teal-300">
                                                 {val.tag}
                                             </span>
                                         </div>
-                                        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                                        <p className="mt-3 text-sm leading-relaxed text-slate-300">
                                             {val.description}
                                         </p>
                                     </div>
@@ -599,24 +607,27 @@ export default function Careers() {
             </section>
 
             {/* OPEN POSITIONS SECTION */}
-            <section id="open-roles" className="bg-slate-50 py-20 sm:py-28 scroll-mt-20">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section id="open-roles" className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28 border-b border-white/10 scroll-mt-20">
+                <div className="pointer-events-none absolute left-1/4 top-10 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="Open Opportunities"
                         title="Find your place on our operational team."
                         description="Browse our active remote roles across credentialing, revenue cycle, clinical authorizations, and quality assurance."
+                        light={true}
                     />
 
                     {/* Department Filters */}
-                    <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+                    <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
                         {DEPARTMENTS.map((dept) => (
                             <button
                                 key={dept}
                                 onClick={() => setSelectedDept(dept)}
-                                className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
+                                className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                                     selectedDept === dept
-                                        ? "bg-navy-900 text-white shadow-sm"
-                                        : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-navy-900"
+                                        ? "bg-gradient-to-r from-teal-400 to-cyan-400 text-navy-950 shadow-lg shadow-teal-500/20 scale-105"
+                                        : "bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 hover:text-white"
                                 }`}
                             >
                                 {dept}
@@ -628,49 +639,49 @@ export default function Careers() {
                     <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {filteredRoles.map((role, idx) => (
                             <ScrollReveal key={role.id} delay={idx * 0.05}>
-                                <div className="h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all hover:shadow-premium hover:border-teal-300 flex flex-col justify-between">
+                                <div className="group h-full rounded-[32px] border border-white/10 bg-slate-900/75 p-7 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/70 hover:bg-slate-900/95 flex flex-col justify-between">
                                     <div>
                                         <div className="flex items-center justify-between gap-2">
-                                            <span className="inline-flex items-center gap-1.5 rounded-md bg-teal-50 px-2.5 py-1 text-xs font-medium text-teal-800">
+                                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-teal-500/30 bg-teal-500/15 px-2.5 py-1 text-xs font-semibold text-teal-300">
                                                 <Building2 className="h-3.5 w-3.5" />
                                                 {role.department}
                                             </span>
-                                            <span className="text-xs font-semibold text-slate-500">
+                                            <span className="text-xs font-semibold text-slate-400">
                                                 {role.experience}
                                             </span>
                                         </div>
 
-                                        <h3 className="mt-4 text-xl font-bold leading-snug text-navy-900">
+                                        <h3 className="mt-5 text-xl font-bold leading-snug text-white group-hover:text-teal-300 transition-colors">
                                             {role.title}
                                         </h3>
 
-                                        <p className="mt-3 text-sm leading-relaxed text-slate-600 line-clamp-3">
+                                        <p className="mt-3 text-sm leading-relaxed text-slate-300 line-clamp-3">
                                             {role.description}
                                         </p>
 
-                                        <div className="mt-5 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
-                                            <span className="inline-flex items-center gap-1">
-                                                <Clock className="h-3.5 w-3.5 text-teal-600" />
+                                        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400">
+                                            <span className="inline-flex items-center gap-1.5">
+                                                <Clock className="h-3.5 w-3.5 text-teal-400" />
                                                 {role.type}
                                             </span>
-                                            <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
-                                                <Calendar className="h-3.5 w-3.5 text-teal-600" />
+                                            <span className="inline-flex items-center gap-1.5 text-slate-300 font-medium">
+                                                <Calendar className="h-3.5 w-3.5 text-teal-400" />
                                                 Posted {role.postedAgo}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between">
+                                    <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
                                         <button
                                             onClick={() => handleOpenModal(role)}
-                                            className="text-sm font-semibold text-teal-700 hover:text-teal-800 inline-flex items-center gap-1 group"
+                                            className="text-sm font-bold text-teal-300 hover:text-teal-200 inline-flex items-center gap-1 group/btn cursor-pointer"
                                         >
                                             View Details & Apply
-                                            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                                            <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
                                         </button>
                                         <button
                                             onClick={() => handleOpenModal(role)}
-                                            className="rounded-full bg-navy-900 px-4 py-2 text-xs font-semibold text-white hover:bg-navy-800 transition-colors"
+                                            className="rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 px-4 py-2 text-xs font-bold text-navy-950 hover:brightness-110 transition-all cursor-pointer"
                                         >
                                             Apply
                                         </button>
@@ -681,16 +692,16 @@ export default function Careers() {
                     </div>
 
                     {filteredRoles.length === 0 && (
-                        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-12 text-center max-w-lg mx-auto">
-                            <HelpCircle className="h-10 w-10 text-slate-400 mx-auto" />
-                            <h3 className="mt-4 text-lg font-bold text-navy-900">No active postings in this category</h3>
-                            <p className="mt-2 text-sm text-slate-600">
+                        <div className="mt-12 rounded-[28px] border border-white/10 bg-slate-900/75 p-12 text-center max-w-lg mx-auto backdrop-blur-xl">
+                            <HelpCircle className="h-10 w-10 text-teal-400 mx-auto" />
+                            <h3 className="mt-4 text-lg font-bold text-white">No active postings in this category</h3>
+                            <p className="mt-2 text-sm text-slate-300">
                                 We are always looking for exceptional talent. Submit a general inquiry and we will keep
                                 your profile active for upcoming openings.
                             </p>
                             <a
                                 href="mailto:hr@marthsystems.com?subject=General%20Application%20Inquiry"
-                                className="mt-5 inline-flex items-center gap-2 rounded-full bg-teal-600 px-5 py-2.5 text-xs font-semibold text-white hover:bg-teal-700"
+                                className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 px-5 py-2.5 text-xs font-bold text-navy-950 hover:brightness-110"
                             >
                                 Send Resume to hr@marthsystems.com
                             </a>
@@ -700,29 +711,31 @@ export default function Careers() {
             </section>
 
             {/* HIRING PROCESS */}
-            <section className="bg-white py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#040A1C] py-20 sm:py-28 border-b border-white/10">
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="Transparent & Respectful"
                         title="Our 4-step interview journey."
                         description="We know your time is valuable. Our hiring process is streamlined, respectful, and designed to give you an authentic look at life at Marth Systems."
+                        light={true}
                     />
 
-                    <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         {HIRING_STEPS.map((h, idx) => (
                             <ScrollReveal key={h.step} delay={idx * 0.07}>
-                                <div className="relative rounded-2xl border border-slate-200 bg-slate-50 p-6 flex flex-col justify-between h-full">
+                                <div className="relative rounded-[28px] border border-white/10 bg-slate-900/75 p-6 sm:p-7 shadow-xl backdrop-blur-xl flex flex-col justify-between h-full hover:border-teal-400/50 transition-all">
                                     <div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-3xl font-extrabold text-teal-600/40 font-mono">
+                                            <span className="text-2xl font-extrabold text-teal-300 font-mono bg-teal-500/15 border border-teal-500/30 px-3 py-1 rounded-xl">
                                                 {h.step}
                                             </span>
-                                            <span className="rounded-full bg-white px-2.5 py-0.5 text-[0.7rem] font-semibold text-slate-600 shadow-xs border border-slate-200">
+                                            <span className="rounded-full bg-white/5 px-3 py-1 text-[0.7rem] font-semibold text-slate-300 border border-white/10">
                                                 {h.time}
                                             </span>
                                         </div>
-                                        <h3 className="mt-4 text-lg font-bold text-navy-900">{h.title}</h3>
-                                        <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
+                                        <h3 className="mt-5 text-lg font-bold text-white">{h.title}</h3>
+                                        <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-300">
                                             {h.description}
                                         </p>
                                     </div>
@@ -734,85 +747,87 @@ export default function Careers() {
             </section>
 
             {/* GENERAL INQUIRIES & RESUME DROP */}
-            <section className="relative overflow-hidden bg-navy-900 py-16 sm:py-20 text-white">
-                <div className="absolute inset-0 bg-grid-dark opacity-30" />
-                <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-500/10 blur-3xl" />
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-24 text-white">
+                <div className="absolute inset-0 bg-grid-dark opacity-25" />
+                <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-teal-500/15 blur-[120px]" />
 
                 <div className="relative mx-auto max-w-5xl px-5 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-400/20 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-300">
-                        <Briefcase className="h-3.5 w-3.5" />
-                        Don&apos;t see your specific role?
-                    </span>
-                    <h2 className="mt-4 text-3xl sm:text-4xl font-bold">
-                        We provide services across the world and hire from everywhere.
-                    </h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-base text-slate-300 leading-relaxed">
-                        We are a global team delivering healthcare operations to organizations worldwide. Whether you are an experienced credentialing specialist, medical coder, billing supervisor, or prior authorization coordinator, we welcome talented professionals from all countries. Send us your resume and a brief introduction.
-                    </p>
+                    <div className="rounded-[36px] border border-white/15 bg-gradient-to-br from-slate-900/90 via-[#07112C] to-slate-950 p-8 sm:p-14 shadow-2xl backdrop-blur-2xl">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/15 px-3.5 py-1 text-xs font-semibold text-teal-300">
+                            <Briefcase className="h-3.5 w-3.5" />
+                            Don&apos;t see your specific role?
+                        </span>
+                        <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-white">
+                            We provide services across the world and hire from everywhere.
+                        </h2>
+                        <p className="mt-4 max-w-2xl mx-auto text-base text-slate-300 leading-relaxed">
+                            We are a global team delivering healthcare operations to organizations worldwide. Whether you are an experienced credentialing specialist, medical coder, billing supervisor, or prior authorization coordinator, we welcome talented professionals from all countries. Send us your resume and a brief introduction.
+                        </p>
 
-                    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a
-                            href="mailto:hr@marthsystems.com?subject=General%20Application%20%E2%80%94%20Marth%20Systems"
-                            className="inline-flex items-center gap-2 rounded-full bg-teal-500 px-7 py-3 text-sm font-semibold text-navy-950 hover:bg-teal-400 transition-colors shadow-premium"
-                        >
-                            Email Resume to hr@marthsystems.com
-                            <Send className="h-4 w-4" />
-                        </a>
-                        <button
-                            onClick={() => handleCopyEmail("hr@marthsystems.com")}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-                        >
-                            {copiedEmail ? (
-                                <>
-                                    <Check className="h-4 w-4 text-teal-400" />
-                                    Email Copied to Clipboard
-                                </>
-                            ) : (
-                                <>
-                                    <Copy className="h-4 w-4 text-slate-300" />
-                                    Copy Email Address
-                                </>
-                            )}
-                        </button>
+                        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a
+                                href="mailto:hr@marthsystems.com?subject=General%20Application%20%E2%80%94%20Marth%20Systems"
+                                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-8 py-4 text-sm font-bold text-navy-950 hover:brightness-110 transition-all shadow-premium"
+                            >
+                                Email Resume to hr@marthsystems.com
+                                <Send className="h-4 w-4" />
+                            </a>
+                            <button
+                                onClick={() => handleCopyEmail("hr@marthsystems.com")}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-4 text-sm font-semibold text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            >
+                                {copiedEmail ? (
+                                    <>
+                                        <Check className="h-4 w-4 text-teal-400" />
+                                        Email Copied to Clipboard
+                                    </>
+                                ) : (
+                                    <>
+                                        <Copy className="h-4 w-4 text-slate-300" />
+                                        Copy Email Address
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ROLE DETAILS & APPLICATION MODAL */}
+            {/* ROLE DETAILS & APPLICATION MODAL (DARK GLASSMORPHIC) */}
             {activeModalRole && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/70 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto"
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 sm:p-6 overflow-y-auto"
                     onClick={handleCloseModal}
                 >
                     <div
-                        className="relative w-full max-w-3xl rounded-3xl bg-white shadow-2xl border border-slate-200 overflow-hidden my-8 max-h-[90vh] flex flex-col"
+                        className="relative w-full max-w-3xl rounded-[32px] bg-[#07112C] shadow-2xl border border-white/15 overflow-hidden my-8 max-h-[90vh] flex flex-col text-slate-100"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header */}
-                        <div className="bg-navy-900 px-6 sm:px-8 py-6 text-white relative">
+                        <div className="bg-[#040A1C] px-6 sm:px-8 py-6 text-white relative border-b border-white/10">
                             <button
                                 onClick={handleCloseModal}
-                                className="absolute right-5 top-5 rounded-full p-1.5 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                                className="absolute right-5 top-5 rounded-full p-2 text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                                 aria-label="Close modal"
                             >
                                 <X className="h-5 w-5" />
                             </button>
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/20 px-3 py-1 text-xs font-medium text-teal-300">
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-500/30 bg-teal-500/15 px-3 py-1 text-xs font-semibold text-teal-300">
                                 {activeModalRole.department}
                             </span>
-                            <h2 className="mt-2 text-2xl sm:text-3xl font-bold leading-tight">
+                            <h2 className="mt-2.5 text-2xl sm:text-3xl font-extrabold leading-tight text-white">
                                 {activeModalRole.title}
                             </h2>
                             <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-slate-300">
-                                <span className="inline-flex items-center gap-1">
+                                <span className="inline-flex items-center gap-1.5">
                                     <Clock className="h-3.5 w-3.5 text-teal-400" />
                                     {activeModalRole.type}
                                 </span>
-                                <span className="inline-flex items-center gap-1">
+                                <span className="inline-flex items-center gap-1.5">
                                     <Briefcase className="h-3.5 w-3.5 text-teal-400" />
                                     {activeModalRole.experience}
                                 </span>
-                                <span className="inline-flex items-center gap-1 text-teal-200">
+                                <span className="inline-flex items-center gap-1.5 text-teal-300 font-medium">
                                     <Calendar className="h-3.5 w-3.5 text-teal-400" />
                                     Posted {activeModalRole.postedAgo}
                                 </span>
@@ -820,46 +835,42 @@ export default function Careers() {
                         </div>
 
                         {/* Body - Scrollable */}
-                        <div className="overflow-y-auto p-6 sm:p-8 space-y-6 text-slate-700">
+                        <div className="overflow-y-auto p-6 sm:p-8 space-y-6 text-slate-200">
                             {submitSuccess ? (
                                 <div className="py-8 text-center flex flex-col items-center">
-                                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-700 shadow-inner">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-500/30 bg-teal-500/15 text-teal-300 shadow-lg">
                                         <CheckCircle2 className="h-9 w-9" />
                                     </div>
-                                    <h3 className="mt-5 text-2xl font-bold text-navy-900">
+                                    <h3 className="mt-5 text-2xl font-extrabold text-white">
                                         Application Submitted Successfully!
                                     </h3>
-                                    <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-600">
-                                        Thank you, <strong className="text-slate-900">{submittedDetails?.name}</strong>. Your application for <strong className="text-slate-900">{submittedDetails?.roleTitle}</strong> has been submitted directly to our Human Resources team.
+                                    <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-300">
+                                        Thank you, <strong className="text-white">{submittedDetails?.name}</strong>. Your application for <strong className="text-white">{submittedDetails?.roleTitle}</strong> has been received.
                                     </p>
 
-                                    <div className="mt-6 w-full max-w-md rounded-2xl border border-teal-200 bg-teal-50/60 p-5 text-left text-xs text-slate-700 space-y-2.5">
-                                        <div className="flex justify-between border-b border-teal-100 pb-2">
-                                            <span className="text-slate-500">Position</span>
-                                            <span className="font-semibold text-slate-800">{submittedDetails?.roleTitle}</span>
+                                    <div className="mt-6 w-full max-w-md rounded-2xl border border-white/10 bg-slate-900/80 p-5 text-left text-xs text-slate-300 space-y-3">
+                                        <div className="flex justify-between border-b border-white/10 pb-2.5">
+                                            <span className="text-slate-400">Position</span>
+                                            <span className="font-semibold text-white">{submittedDetails?.roleTitle}</span>
                                         </div>
-                                        <div className="flex justify-between border-b border-teal-100 pb-2">
-                                            <span className="text-slate-500">Department</span>
-                                            <span className="font-semibold text-slate-800">{submittedDetails?.department}</span>
+                                        <div className="flex justify-between border-b border-white/10 pb-2.5">
+                                            <span className="text-slate-400">Department</span>
+                                            <span className="font-semibold text-white">{submittedDetails?.department}</span>
                                         </div>
-                                        <div className="flex justify-between border-b border-teal-100 pb-2">
-                                            <span className="text-slate-500">Applicant Email</span>
-                                            <span className="font-semibold text-slate-800">{submittedDetails?.email}</span>
+                                        <div className="flex justify-between border-b border-white/10 pb-2.5">
+                                            <span className="text-slate-400">Applicant Email</span>
+                                            <span className="font-semibold text-white">{submittedDetails?.email}</span>
                                         </div>
-                                        <div className="flex justify-between border-b border-teal-100 pb-2">
-                                            <span className="text-slate-500">Resume / CV</span>
-                                            <span className="font-semibold text-teal-800">
+                                        <div className="flex justify-between pt-0.5">
+                                            <span className="text-slate-400">Resume / CV</span>
+                                            <span className="font-semibold text-teal-300">
                                                 {submittedDetails?.resumeName || "Not attached"}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between pt-1">
-                                            <span className="text-slate-500">Routed To</span>
-                                            <span className="font-semibold text-slate-800">hr@marthsystems.com</span>
-                                        </div>
                                     </div>
 
-                                    <div className="mt-6 max-w-md rounded-xl bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 text-left">
-                                        <p className="font-semibold text-slate-800 mb-1">What to expect next?</p>
+                                    <div className="mt-6 max-w-md rounded-2xl bg-slate-900/60 border border-white/10 p-4 text-xs text-slate-300 text-left">
+                                        <p className="font-bold text-white mb-1">What to expect next?</p>
                                         <p>
                                             Our talent team reviews every submission within 48 hours. If your background and experience align with our current operational needs, we will email you directly to schedule an initial video conversation.
                                         </p>
@@ -868,22 +879,22 @@ export default function Careers() {
                             ) : (
                                 <>
                                     <div>
-                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                        <h3 className="text-xs font-bold uppercase tracking-wider text-teal-300">
                                             Role Overview
                                         </h3>
-                                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                                        <p className="mt-2 text-base leading-relaxed text-slate-200">
                                             {activeModalRole.description}
                                         </p>
                                     </div>
 
                                     <div>
-                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                        <h3 className="text-xs font-bold uppercase tracking-wider text-teal-300">
                                             Key Responsibilities
                                         </h3>
                                         <ul className="mt-3 space-y-2.5">
                                             {activeModalRole.responsibilities.map((r, i) => (
-                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                                                    <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
+                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
+                                                    <CheckCircle2 className="h-4 w-4 text-teal-400 shrink-0 mt-0.5" />
                                                     <span>{r}</span>
                                                 </li>
                                             ))}
@@ -891,13 +902,13 @@ export default function Careers() {
                                     </div>
 
                                     <div>
-                                        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                                        <h3 className="text-xs font-bold uppercase tracking-wider text-teal-300">
                                             Qualifications & Skills
                                         </h3>
                                         <ul className="mt-3 space-y-2.5">
                                             {activeModalRole.qualifications.map((q, i) => (
-                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                                                    <CheckCircle2 className="h-4 w-4 text-teal-600 shrink-0 mt-0.5" />
+                                                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
+                                                    <CheckCircle2 className="h-4 w-4 text-teal-400 shrink-0 mt-0.5" />
                                                     <span>{q}</span>
                                                 </li>
                                             ))}
@@ -905,49 +916,49 @@ export default function Careers() {
                                     </div>
 
                                     {/* Direct Application Form */}
-                                    <div className="rounded-2xl border border-teal-200 bg-teal-50/50 p-6">
-                                        <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2">
-                                            <Send className="h-5 w-5 text-teal-700" />
+                                    <div className="rounded-2xl border border-white/15 bg-slate-900/80 p-6">
+                                        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                                            <Send className="h-5 w-5 text-teal-400" />
                                             Apply for this Position
                                         </h3>
-                                        <p className="mt-1 text-xs text-slate-600">
-                                            Fill in your details and attach your resume or CV below. Your application will be submitted directly to our Human Resources team.
+                                        <p className="mt-1 text-xs text-slate-300">
+                                            Fill in your details and attach your resume or CV below to submit your application.
                                         </p>
 
                                         {submitError && (
-                                            <div className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 border border-red-200 p-3 text-xs text-red-700">
-                                                <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                                            <div className="mt-4 flex items-center gap-2 rounded-xl bg-red-500/15 border border-red-500/30 p-3 text-xs text-red-300">
+                                                <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
                                                 <span>{submitError}</span>
                                             </div>
                                         )}
 
-                                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                        <div className="mt-4 grid gap-3.5 sm:grid-cols-2">
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                                    Full Name *
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
+                                                    Full Name <span className="text-teal-400">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
                                                     value={candidateName}
                                                     onChange={(e) => setCandidateName(e.target.value)}
                                                     placeholder="Jane Doe"
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                                                    Email Address *
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
+                                                    Email Address <span className="text-teal-400">*</span>
                                                 </label>
                                                 <input
                                                     type="email"
                                                     value={candidateEmail}
                                                     onChange={(e) => setCandidateEmail(e.target.value)}
                                                     placeholder="jane@example.com"
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
                                                     Phone Number
                                                 </label>
                                                 <input
@@ -955,11 +966,11 @@ export default function Careers() {
                                                     value={candidatePhone}
                                                     onChange={(e) => setCandidatePhone(e.target.value)}
                                                     placeholder="(555) 000-0000"
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
                                                     Years in Healthcare Operations
                                                 </label>
                                                 <input
@@ -967,11 +978,11 @@ export default function Careers() {
                                                     value={candidateExperience}
                                                     onChange={(e) => setCandidateExperience(e.target.value)}
                                                     placeholder="e.g., 3 years"
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                             <div className="sm:col-span-2">
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
                                                     LinkedIn / Online Profile (Optional)
                                                 </label>
                                                 <input
@@ -979,38 +990,38 @@ export default function Careers() {
                                                     value={candidateLinkedIn}
                                                     onChange={(e) => setCandidateLinkedIn(e.target.value)}
                                                     placeholder="https://linkedin.com/in/username"
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                             <div className="sm:col-span-2">
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
                                                     Resume or CV (PDF, DOCX, DOC)
                                                 </label>
                                                 {!resumeFile ? (
-                                                    <label className="flex flex-col items-center justify-center border-2 border-dashed border-teal-300/80 bg-white hover:bg-teal-50/50 rounded-xl p-5 cursor-pointer transition-colors group">
+                                                    <label className="flex flex-col items-center justify-center border-2 border-dashed border-teal-500/40 bg-slate-950/60 hover:bg-slate-950 rounded-xl p-5 cursor-pointer transition-colors group">
                                                         <input
                                                             type="file"
                                                             accept=".pdf,.doc,.docx"
                                                             className="hidden"
                                                             onChange={handleFileChange}
                                                         />
-                                                        <div className="flex items-center gap-2 text-teal-700 font-medium text-sm group-hover:text-teal-800">
+                                                        <div className="flex items-center gap-2 text-teal-300 font-semibold text-sm group-hover:text-teal-200">
                                                             <UploadCloud className="h-5 w-5" />
                                                             <span>Upload Resume or CV</span>
                                                         </div>
-                                                        <p className="mt-1 text-xs text-slate-500">
+                                                        <p className="mt-1 text-xs text-slate-400">
                                                             Click to browse or drop file (PDF, DOC, or DOCX up to 5MB)
                                                         </p>
                                                     </label>
                                                 ) : (
-                                                    <div className="flex items-center justify-between rounded-xl border border-teal-200 bg-white p-3.5 shadow-xs">
+                                                    <div className="flex items-center justify-between rounded-xl border border-teal-500/30 bg-slate-950/80 p-3.5">
                                                         <div className="flex items-center gap-3 overflow-hidden">
-                                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
+                                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30">
                                                                 <FileText className="h-5 w-5" />
                                                             </div>
                                                             <div className="truncate">
-                                                                <p className="text-sm font-semibold text-slate-800 truncate">{resumeFile.name}</p>
-                                                                <p className="text-xs text-teal-700 font-medium">
+                                                                <p className="text-sm font-semibold text-white truncate">{resumeFile.name}</p>
+                                                                <p className="text-xs text-teal-300 font-medium">
                                                                     {(resumeFile.size / 1024 / 1024).toFixed(2)} MB · Ready to attach
                                                                 </p>
                                                             </div>
@@ -1018,7 +1029,7 @@ export default function Careers() {
                                                         <button
                                                             type="button"
                                                             onClick={handleRemoveFile}
-                                                            className="ml-3 p-1.5 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                                                            className="ml-3 p-1.5 text-slate-400 hover:text-red-400 rounded-lg hover:bg-red-500/10 transition-colors cursor-pointer"
                                                             title="Remove file"
                                                         >
                                                             <Trash2 className="h-4 w-4" />
@@ -1026,11 +1037,11 @@ export default function Careers() {
                                                     </div>
                                                 )}
                                                 {uploadError && (
-                                                    <p className="mt-1.5 text-xs text-red-600 font-medium">{uploadError}</p>
+                                                    <p className="mt-1.5 text-xs text-red-400 font-medium">{uploadError}</p>
                                                 )}
                                             </div>
                                             <div className="sm:col-span-2">
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                                                <label className="block text-xs font-semibold text-slate-200 mb-1">
                                                     Brief Introduction / Relevant Experience
                                                 </label>
                                                 <textarea
@@ -1038,7 +1049,7 @@ export default function Careers() {
                                                     value={candidateNote}
                                                     onChange={(e) => setCandidateNote(e.target.value)}
                                                     placeholder="Tell us briefly about your experience, EHR/clearinghouse systems you know, or certifications..."
-                                                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                                                    className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none"
                                                 />
                                             </div>
                                         </div>
@@ -1048,11 +1059,11 @@ export default function Careers() {
                                                 type="button"
                                                 disabled={submitting}
                                                 onClick={handleSubmitApplication}
-                                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-7 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-8 py-3 text-sm font-bold text-navy-950 hover:brightness-110 shadow-premium transition-all disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                                             >
                                                 {submitting ? (
                                                     <>
-                                                        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                                        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-navy-950/40 border-t-navy-950" />
                                                         Submitting Application...
                                                     </>
                                                 ) : (
@@ -1069,13 +1080,13 @@ export default function Careers() {
                         </div>
 
                         {/* Footer */}
-                        <div className="bg-slate-100 px-6 py-4 flex items-center justify-between border-t border-slate-200">
-                            <span className="text-xs text-slate-500">
+                        <div className="bg-[#040A1C] px-6 py-4 flex items-center justify-between border-t border-white/10">
+                            <span className="text-xs text-slate-400">
                                 Marth Systems is an Equal Opportunity Employer.
                             </span>
                             <button
                                 onClick={handleCloseModal}
-                                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                                className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-white/10 cursor-pointer"
                             >
                                 Close
                             </button>
@@ -1083,6 +1094,6 @@ export default function Careers() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }

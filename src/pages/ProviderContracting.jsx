@@ -57,7 +57,7 @@ const AUDIENCES = [
 
 export default function ProviderContracting() {
     return (
-        <>
+        <div className="bg-[#040A1C] text-slate-100 min-h-screen overflow-x-hidden">
             <SEO
                 title="Provider Contracting Services | Marth Systems"
                 description="Organized provider contracting support for healthcare organizations, including documentation, coordination, submission support, follow-up, status tracking, and ongoing maintenance."
@@ -65,20 +65,21 @@ export default function ProviderContracting() {
             />
 
             {/* HERO */}
-            <section className="relative overflow-hidden bg-navy-900 pt-28 pb-20 sm:pt-36 sm:pb-28">
-                <div className="absolute inset-0 bg-grid-dark opacity-25" />
-                <div className="absolute -right-32 -top-20 h-96 w-96 rounded-full bg-teal-500/15 blur-3xl" />
-                <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-teal-400/10 blur-3xl" />
+            <section className="relative overflow-hidden bg-[#040A1C] pt-32 pb-24 sm:pt-40 sm:pb-32 border-b border-white/10">
+                <div className="pointer-events-none absolute -left-36 top-10 h-[480px] w-[480px] rounded-full bg-cyan-500/15 blur-[130px] animate-ambient-slow" />
+                <div className="pointer-events-none absolute -right-32 top-20 h-[460px] w-[460px] rounded-full bg-teal-400/15 blur-[130px] animate-ambient-reverse" />
+                <div className="absolute inset-0 bg-grid-dark opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_85%)]" />
                 <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <div className="grid items-center gap-14 lg:grid-cols-2">
                         <div className="max-w-3xl">
                             <ScrollReveal>
-                                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">
+                                <span className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-300 backdrop-blur-md">
+                                    <span className="h-2 w-2 rounded-full bg-teal-400 animate-pulse-soft" />
                                     Provider Contracting
                                 </span>
                             </ScrollReveal>
                             <ScrollReveal delay={0.06}>
-                                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-white">
+                                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.06] tracking-tight text-white">
                                     Provider Contracting, Organized for Better Operations
                                 </h1>
                             </ScrollReveal>
@@ -91,24 +92,24 @@ export default function ProviderContracting() {
                                 </p>
                             </ScrollReveal>
                             <ScrollReveal delay={0.18}>
-                                <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                                     <Link
                                         to="/contact"
-                                        className="group inline-flex items-center gap-2 rounded-full bg-teal-500 px-6 py-3 text-base font-semibold text-navy-950 shadow-premium-lg transition-all hover:bg-teal-400 hover:scale-[1.02]"
+                                        className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-8 py-4 text-base font-bold text-navy-950 shadow-premium transition-all hover:brightness-110 hover:scale-[1.02]"
                                     >
                                         Talk to Our Team
                                         <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                                     </Link>
                                     <Link
                                         to="/#services"
-                                        className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/40"
                                     >
                                         Explore Our Services
                                     </Link>
                                 </div>
                             </ScrollReveal>
                         </div>
-                        <ScrollReveal delay={0.2} className="lg:justify-self-end">
+                        <ScrollReveal delay={0.2} className="lg:justify-self-end w-full flex justify-center lg:justify-end">
                             <ContractingVisualization />
                         </ScrollReveal>
                     </div>
@@ -116,45 +117,51 @@ export default function ProviderContracting() {
             </section>
 
             {/* SECTION 1 — THE CHALLENGE */}
-            <section className="bg-white py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute -left-20 top-20 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="The challenge"
                         title="Provider Contracting Shouldn't Become an Administrative Bottleneck"
                         description="Contracting touches documents, payer requirements, and ongoing coordination — and when it's managed ad hoc, items stall and visibility disappears. Provider contracting may involve:"
                         align="left"
+                        light={true}
                     />
                     <div className="mt-10">
-                        <FeatureList items={CHALLENGE} columns={2} />
+                        <FeatureList items={CHALLENGE} columns={2} light={true} />
                     </div>
                 </div>
             </section>
 
             {/* SECTION 2 — WHAT WE SUPPORT */}
-            <section className="bg-slate-50 py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#040A1C] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute right-10 top-20 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="What we support"
                         title="Administrative support across the contracting workflow."
                         description="Organized, coordinated support for the operational side of provider contracting."
+                        light={true}
                     />
-                    <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {SUPPORT.map((s, i) => (
                             <ScrollReveal key={s.title} delay={(i % 3) * 0.06}>
-                                <div className="group h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-premium transition-all hover:-translate-y-1 hover:border-teal-300 hover:shadow-premium-lg">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-teal-300 transition-colors group-hover:bg-teal-500 group-hover:text-navy-950">
+                                <div className="group h-full rounded-[28px] border border-white/10 bg-slate-900/75 p-7 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-400/60 hover:bg-slate-900/95">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-teal-300 border border-white/10 transition-colors group-hover:bg-gradient-to-tr group-hover:from-teal-500 group-hover:to-cyan-400 group-hover:text-navy-950">
                                         <s.icon className="h-6 w-6" />
                                     </div>
-                                    <h3 className="mt-5 text-lg font-semibold text-navy-900">{s.title}</h3>
-                                    <p className="mt-2.5 text-sm leading-relaxed text-slate-600">{s.description}</p>
+                                    <h3 className="mt-5 text-lg font-bold text-white">{s.title}</h3>
+                                    <p className="mt-2.5 text-sm leading-relaxed text-slate-300">{s.description}</p>
                                 </div>
                             </ScrollReveal>
                         ))}
                     </div>
                     <ScrollReveal delay={0.1}>
-                        <div className="mt-12 flex items-start gap-3 rounded-2xl border border-teal-200 bg-teal-50 p-6">
-                            <Info className="h-5 w-5 shrink-0 text-teal-700 mt-0.5" />
-                            <p className="text-sm leading-relaxed text-navy-800">
+                        <div className="mt-12 flex items-start gap-3.5 rounded-2xl border border-teal-500/30 bg-teal-500/10 p-6 backdrop-blur-xl">
+                            <Info className="h-5 w-5 shrink-0 text-teal-300 mt-0.5" />
+                            <p className="text-sm leading-relaxed text-slate-200">
                                 Marth Systems provides administrative and operational support for contracting
                                 workflows. We are not a payer, we do not approve or execute contracts, and
                                 contracting decisions rest with the payer and your organization.
@@ -165,20 +172,22 @@ export default function ProviderContracting() {
             </section>
 
             {/* SECTION 3 — WORKFLOW */}
-            <section className="bg-white py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28 border-b border-white/10">
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="The workflow"
                         title="A structured path from assessment to maintenance."
                         description="Each step keeps contracting work organized, visible, and moving."
+                        light={true}
                     />
                     <div className="mt-16">
-                        <WorkflowDiagram steps={STEPS} />
+                        <WorkflowDiagram steps={STEPS} variant="dark" />
                     </div>
                     <ScrollReveal delay={0.1}>
-                        <div className="mt-12 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-                            <Info className="h-5 w-5 shrink-0 text-teal-600 mt-0.5" />
-                            <p className="text-sm leading-relaxed text-slate-600">
+                        <div className="mt-12 flex items-start gap-3.5 rounded-2xl border border-white/10 bg-slate-900/75 p-6 shadow-xl backdrop-blur-xl">
+                            <Info className="h-5 w-5 shrink-0 text-teal-400 mt-0.5" />
+                            <p className="text-sm leading-relaxed text-slate-300">
                                 Contracting requirements, participation criteria, documentation, and payer
                                 processes may vary by organization, payer, provider type, and applicable
                                 requirements. Marth Systems focuses on accurate, organized administrative support —
@@ -190,22 +199,25 @@ export default function ProviderContracting() {
             </section>
 
             {/* SECTION 4 — WHY ORGANIZATION MATTERS */}
-            <section className="bg-slate-50 py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#040A1C] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute left-10 top-1/3 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="Why organization matters"
                         title="Visibility Across the Contracting Process"
                         description="Organization is what turns contracting activity into a manageable, repeatable process."
+                        light={true}
                     />
                     <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                         {PILLARS.map((p, i) => (
                             <ScrollReveal key={p.title} delay={i * 0.06}>
-                                <div className="group h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-premium transition-all hover:-translate-y-1 hover:border-teal-300 hover:shadow-premium-lg">
-                                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition-colors group-hover:bg-navy-900 group-hover:text-teal-300">
+                                <div className="group h-full rounded-[28px] border border-white/10 bg-slate-900/75 p-6 sm:p-7 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-400/60 hover:bg-slate-900/95">
+                                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300 border border-teal-500/30 transition-colors group-hover:bg-gradient-to-tr group-hover:from-teal-500 group-hover:to-cyan-400 group-hover:text-navy-950">
                                         <p.icon className="h-5 w-5" />
                                     </div>
-                                    <h3 className="mt-4 text-base font-semibold text-navy-900">{p.title}</h3>
-                                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.description}</p>
+                                    <h3 className="mt-5 text-base font-bold text-white">{p.title}</h3>
+                                    <p className="mt-2.5 text-sm leading-relaxed text-slate-300">{p.description}</p>
                                 </div>
                             </ScrollReveal>
                         ))}
@@ -214,37 +226,39 @@ export default function ProviderContracting() {
             </section>
 
             {/* SECTION 5 — WHO THIS SUPPORT IS FOR */}
-            <section className="bg-white py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28">
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="Who this support is for"
                         title="Support for organizations of different shapes and sizes."
                         description="Any organization that manages payer contracting activity can benefit from a more organized administrative workflow."
+                        light={true}
                     />
                     <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
                         {AUDIENCES.map((a, i) => (
                             <ScrollReveal key={a.label} delay={i * 0.06}>
-                                <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center shadow-premium transition-all hover:-translate-y-1 hover:border-teal-300 hover:bg-white hover:shadow-premium-lg">
-                                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-900 text-teal-300">
+                                <div className="group flex h-full flex-col items-center gap-3.5 rounded-2xl border border-white/10 bg-slate-900/75 p-6 text-center shadow-xl backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-teal-400/60 hover:bg-slate-900/95">
+                                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300 border border-teal-500/30 transition-colors group-hover:bg-teal-400 group-hover:text-navy-950">
                                         <a.icon className="h-5 w-5" />
                                     </span>
-                                    <span className="text-sm font-semibold leading-snug text-navy-900">{a.label}</span>
+                                    <span className="text-sm font-semibold leading-snug text-white">{a.label}</span>
                                 </div>
                             </ScrollReveal>
                         ))}
                     </div>
                     <ScrollReveal delay={0.1}>
-                        <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-slate-600">
+                        <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-slate-300">
                             Contracting work often sits alongside{" "}
-                            <Link to="/credentialing" className="font-semibold text-teal-700 hover:underline">
+                            <Link to="/credentialing" className="font-semibold text-teal-300 hover:text-teal-200 underline underline-offset-4">
                                 credentialing
                             </Link>
                             ,{" "}
-                            <Link to="/provider-enrollment" className="font-semibold text-teal-700 hover:underline">
+                            <Link to="/provider-enrollment" className="font-semibold text-teal-300 hover:text-teal-200 underline underline-offset-4">
                                 provider enrollment
                             </Link>
                             , and{" "}
-                            <Link to="/billing" className="font-semibold text-teal-700 hover:underline">
+                            <Link to="/billing" className="font-semibold text-teal-300 hover:text-teal-200 underline underline-offset-4">
                                 billing
                             </Link>{" "}
                             — when those workflows are organized together, handoffs break down less often.
@@ -261,6 +275,6 @@ export default function ProviderContracting() {
                 email="contact@marthsystems.com"
                 emailLabel="contact@marthsystems.com"
             />
-        </>
+        </div>
     );
 }

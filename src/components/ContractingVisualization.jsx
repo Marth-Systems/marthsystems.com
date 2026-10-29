@@ -19,7 +19,7 @@ export default function ContractingVisualization() {
             <svg
                 viewBox="0 0 400 150"
                 fill="none"
-                className="absolute -top-10 left-1/2 w-[130%] -translate-x-1/2 text-teal-300/40"
+                className="pointer-events-none absolute -top-10 left-1/2 w-full max-w-[420px] -translate-x-1/2 text-teal-300/40"
                 aria-hidden="true"
             >
                 <path d="M200 130 L60 30" stroke="currentColor" strokeWidth="1.5" className="animate-dash" />
@@ -32,7 +32,7 @@ export default function ContractingVisualization() {
             </svg>
 
             {/* Tracker panel */}
-            <div className="glass-dark relative mt-16 rounded-3xl p-6 sm:p-7 shadow-premium-lg">
+            <div className="relative mt-16 rounded-[32px] border border-white/15 bg-slate-900/85 p-6 sm:p-7 shadow-2xl backdrop-blur-2xl">
                 <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold text-white">Contracting Tracker</p>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/15 px-2.5 py-1 text-[11px] font-semibold text-teal-300">

@@ -41,7 +41,7 @@ const STEPS = [
 
 export default function Credentialing() {
     return (
-        <>
+        <div className="bg-[#040A1C] text-slate-100 min-h-screen overflow-x-hidden">
             <SEO
                 title="Provider Credentialing & Enrollment Services"
                 description="Marth Systems provides provider credentialing and enrollment support — primary source verification, license and board certification checks, CAQH management, and Medicare, Medicaid, and commercial payer enrollment."
@@ -53,22 +53,66 @@ export default function Credentialing() {
                 description="From primary source verification to payer enrollment and ongoing recredentialing, Marth Systems manages the credentialing process with accuracy and compliance in mind — so your providers can see patients and bill without avoidable delays."
                 email="contact@marthsystems.com"
                 ctaText="Talk to Our Credentialing Team"
+                highlights={[
+                    "Primary Source Verification (PSV)",
+                    "CAQH ProView Attestation",
+                    "Proactive Expiration Tracking",
+                ]}
+                metrics={[
+                    {
+                        label: "Dossier Turnaround",
+                        sub: "From document intake to payer submission",
+                        value: "< 21d",
+                    },
+                    {
+                        label: "Primary Verification",
+                        sub: "State boards, DEA, NPDB, OIG & SAM",
+                        value: "100%",
+                    },
+                    {
+                        label: "Payer Coverage",
+                        sub: "Medicare, Medicaid & Commercial plans",
+                        value: "50 States",
+                    },
+                ]}
             />
 
-            <section className="bg-white py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-                    <div className="grid gap-3 sm:grid-cols-3 mb-16">
+            {/* PILLARS & VERIFICATION SCOPE */}
+            <section className="relative overflow-hidden bg-[#060E28] py-20 sm:py-28 border-b border-white/10">
+                <div className="pointer-events-none absolute -left-24 top-20 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+                    <div className="grid gap-5 sm:grid-cols-3 mb-20">
                         {[
-                            { icon: ShieldCheck, label: "Initial & Recredentialing" },
-                            { icon: Building2, label: "Payer Enrollment" },
-                            { icon: ClipboardList, label: "Ongoing Tracking" },
+                            {
+                                icon: ShieldCheck,
+                                label: "Initial & Recredentialing",
+                                desc: "Complete primary source verification and cycle management.",
+                            },
+                            {
+                                icon: Building2,
+                                label: "Payer Enrollment",
+                                desc: "Medicare, Medicaid, and commercial network submissions.",
+                            },
+                            {
+                                icon: ClipboardList,
+                                label: "Ongoing Tracking",
+                                desc: "Continuous CAQH attestations and license expiration alerts.",
+                            },
                         ].map((c, i) => (
                             <ScrollReveal key={c.label} delay={i * 0.06}>
-                                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4">
-                                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900 text-teal-300">
+                                <div className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/75 p-6 shadow-xl backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-teal-400/60">
+                                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300 border border-teal-500/30 transition-colors group-hover:bg-teal-400 group-hover:text-navy-950">
                                         <c.icon className="h-5 w-5" />
                                     </span>
-                                    <span className="text-sm font-semibold text-navy-900">{c.label}</span>
+                                    <div>
+                                        <span className="block text-base font-bold text-white">{c.label}</span>
+                                        <span className="mt-1 block text-xs leading-relaxed text-slate-300">
+                                            {c.desc}
+                                        </span>
+                                    </div>
                                 </div>
                             </ScrollReveal>
                         ))}
@@ -79,9 +123,10 @@ export default function Credentialing() {
                         title="Thorough credentialing verification."
                         description="We handle the full verification scope expected for provider credentialing files."
                         align="left"
+                        light={true}
                     />
                     <div className="mt-10">
-                        <FeatureList items={VERIFICATION} columns={2} />
+                        <FeatureList items={VERIFICATION} columns={2} light={true} />
                     </div>
 
                     <div className="mt-20">
@@ -90,28 +135,34 @@ export default function Credentialing() {
                             title="Payer enrollment, prepared and followed up."
                             description="We prepare and submit enrollment applications, then track them through to completion."
                             align="left"
+                            light={true}
                         />
                         <div className="mt-10">
-                            <FeatureList items={ENROLLMENT} columns={2} />
+                            <FeatureList items={ENROLLMENT} columns={2} light={true} />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="bg-slate-50 py-20 sm:py-28">
-                <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            {/* WORKFLOW SECTION */}
+            <section className="relative overflow-hidden bg-[#040A1C] py-20 sm:py-28">
+                <div className="pointer-events-none absolute right-1/4 top-10 h-80 w-80 rounded-full bg-teal-500/10 blur-[120px]" />
+                <div className="absolute inset-0 bg-grid-dark opacity-20" />
+
+                <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                     <SectionHeading
                         eyebrow="The workflow"
                         title="How credentialing moves with Marth Systems."
                         description="A structured process that keeps verification, enrollment, and ongoing maintenance organized."
+                        light={true}
                     />
                     <div className="mt-16">
-                        <WorkflowDiagram steps={STEPS} />
+                        <WorkflowDiagram steps={STEPS} variant="dark" />
                     </div>
                     <ScrollReveal delay={0.1}>
-                        <div className="mt-12 flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-6">
-                            <Search className="h-5 w-5 shrink-0 text-teal-600 mt-0.5" />
-                            <p className="text-sm leading-relaxed text-slate-600">
+                        <div className="mt-12 flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/75 p-6 sm:p-7 shadow-xl backdrop-blur-xl">
+                            <Search className="h-5 w-5 shrink-0 text-teal-400 mt-0.5" />
+                            <p className="text-sm leading-relaxed text-slate-300">
                                 Credentialing timelines vary by payer, provider type, and completeness of
                                 documentation. We focus on accurate, complete submissions and consistent follow-up
                                 to keep the process moving as efficiently as possible.
@@ -119,13 +170,13 @@ export default function Credentialing() {
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={0.15}>
-                        <p className="mt-6 text-center text-sm text-slate-500">
+                        <p className="mt-8 text-center text-sm text-slate-400">
                             Credentialing is often connected to{" "}
-                            <Link to="/provider-enrollment" className="font-semibold text-teal-700 hover:underline">
+                            <Link to="/provider-enrollment" className="font-semibold text-teal-300 hover:text-teal-200 underline underline-offset-4">
                                 provider enrollment
                             </Link>{" "}
                             and{" "}
-                            <Link to="/provider-contracting" className="font-semibold text-teal-700 hover:underline">
+                            <Link to="/provider-contracting" className="font-semibold text-teal-300 hover:text-teal-200 underline underline-offset-4">
                                 contracting
                             </Link>{" "}
                             — organized together, the handoffs between them break down less often.
@@ -141,6 +192,6 @@ export default function Credentialing() {
                 email="contact@marthsystems.com"
                 emailLabel="contact@marthsystems.com"
             />
-        </>
+        </div>
     );
 }

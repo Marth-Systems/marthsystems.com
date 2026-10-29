@@ -65,6 +65,12 @@
         @apply border-border outline-ring/50;
     }
 
+    html,
+    body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
     body {
         @apply bg-background text-foreground font-body antialiased;
         -webkit-font-smoothing: antialiased;
@@ -183,6 +189,53 @@
 
         50% {
             opacity: 1;
+        }
+    }
+
+    /* Ambient Glow & Floating Mesh for Sagility Aesthetic */
+    .animate-ambient-slow {
+        animation: ambientDrift 22s ease-in-out infinite alternate;
+    }
+
+    .animate-ambient-reverse {
+        animation: ambientDriftReverse 26s ease-in-out infinite alternate;
+    }
+
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradientX 8s ease infinite;
+    }
+
+    @keyframes ambientDrift {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+        50% {
+            transform: translate(40px, -30px) scale(1.12);
+        }
+        100% {
+            transform: translate(-30px, 20px) scale(0.95);
+        }
+    }
+
+    @keyframes ambientDriftReverse {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+        50% {
+            transform: translate(-40px, 35px) scale(1.08);
+        }
+        100% {
+            transform: translate(25px, -25px) scale(0.92);
+        }
+    }
+
+    @keyframes gradientX {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
         }
     }
 }

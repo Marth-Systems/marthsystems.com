@@ -26,18 +26,19 @@ const EMAILS = [
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-navy-900 text-slate-300">
-            <div className="absolute inset-0 bg-grid-dark opacity-40" />
-            <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />
+        <footer className="relative overflow-hidden bg-[#030712] text-slate-300 border-t border-white/10">
+            <div className="absolute inset-0 bg-grid-dark opacity-30" />
+            <div className="pointer-events-none absolute -top-24 right-1/4 h-80 w-80 rounded-full bg-teal-500/10 blur-[130px]" />
+            <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
 
-            <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-16 pb-10">
+            <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-16 pb-12">
                 <div className="grid gap-12 lg:grid-cols-12">
                     <div className="lg:col-span-4">
-                        <Link to="/" className="flex items-center gap-3" aria-label="Marth Systems home">
-                            <LogoMark className="h-10 w-auto" />
+                        <Link to="/" className="flex items-center gap-3 group" aria-label="Marth Systems home">
+                            <LogoMark className="h-10 w-auto transition-transform group-hover:scale-105" />
                             <div>
-                                <span className="block text-lg font-bold text-white">Marth Systems</span>
-                                <span className="block text-[0.62rem] font-medium uppercase tracking-[0.15em] text-teal-300/80 whitespace-nowrap mt-0.5">
+                                <span className="block text-lg font-bold text-white tracking-tight">Marth Systems</span>
+                                <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-teal-300 whitespace-nowrap mt-0.5">
                                     Accurate · Compliant · Connected
                                 </span>
                             </div>
@@ -47,18 +48,21 @@ export default function Footer() {
                             credentialing, billing, AR management, prior authorization, and patient
                             support — handled with accuracy and compliance in mind.
                         </p>
-                        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-slate-300">
-                            <ShieldCheck className="h-4 w-4 text-teal-300" />
-                            B2B healthcare operations services
+                        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-2 text-xs font-semibold text-teal-300">
+                            <ShieldCheck className="h-4 w-4 text-teal-400" />
+                            B2B Healthcare Operations Services
                         </div>
                     </div>
 
                     <div className="lg:col-span-3">
-                        <h3 className="text-sm font-semibold text-white">Services</h3>
+                        <h3 className="text-sm font-bold uppercase tracking-wider text-white">Services</h3>
                         <ul className="mt-4 space-y-3 text-sm">
                             {SERVICES.map((s) => (
                                 <li key={s.label}>
-                                    <Link to={s.path} className="text-slate-400 hover:text-teal-300 transition-colors">
+                                    <Link
+                                        to={s.path}
+                                        className="text-slate-400 hover:text-teal-300 transition-all inline-block hover:translate-x-1"
+                                    >
                                         {s.label}
                                     </Link>
                                 </li>
@@ -67,11 +71,14 @@ export default function Footer() {
                     </div>
 
                     <div className="lg:col-span-2">
-                        <h3 className="text-sm font-semibold text-white">Company</h3>
+                        <h3 className="text-sm font-bold uppercase tracking-wider text-white">Company</h3>
                         <ul className="mt-4 space-y-3 text-sm">
                             {COMPANY.map((s) => (
                                 <li key={s.label}>
-                                    <Link to={s.path} className="text-slate-400 hover:text-teal-300 transition-colors">
+                                    <Link
+                                        to={s.path}
+                                        className="text-slate-400 hover:text-teal-300 transition-all inline-block hover:translate-x-1"
+                                    >
                                         {s.label}
                                     </Link>
                                 </li>
@@ -80,7 +87,7 @@ export default function Footer() {
                     </div>
 
                     <div className="lg:col-span-3">
-                        <h3 className="text-sm font-semibold text-white">Contact</h3>
+                        <h3 className="text-sm font-bold uppercase tracking-wider text-white">Contact</h3>
                         <ul className="mt-4 space-y-3 text-sm">
                             {EMAILS.map((e) => (
                                 <li key={e.email}>
@@ -88,8 +95,8 @@ export default function Footer() {
                                         href={`mailto:${e.email}`}
                                         className="group inline-flex items-center gap-2 text-slate-400 hover:text-teal-300 transition-colors"
                                     >
-                                        <Mail className="h-4 w-4 text-teal-400/70 group-hover:text-teal-300" />
-                                        <span className="font-medium text-slate-300">{e.label}:</span>
+                                        <Mail className="h-4 w-4 text-teal-400/80 group-hover:text-teal-300 transition-colors shrink-0" />
+                                        <span className="font-semibold text-slate-300">{e.label}:</span>
                                         <span className="truncate">{e.email}</span>
                                     </a>
                                 </li>
@@ -97,16 +104,16 @@ export default function Footer() {
                         </ul>
                         <Link
                             to="/contact"
-                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-500 px-5 py-2.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-teal-400"
+                            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-6 py-3 text-xs font-bold text-navy-950 shadow-md transition-all hover:brightness-110 hover:scale-[1.02]"
                         >
                             Request a Consultation
                         </Link>
                     </div>
                 </div>
 
-                <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-500">
+                <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-slate-400">
                     <p>© {new Date().getFullYear()} Marth Systems. All rights reserved.</p>
-                    <p className="max-w-xl leading-relaxed">
+                    <p className="max-w-xl leading-relaxed text-slate-500">
                         Marth Systems provides administrative and operational support services. We do not
                         provide medical diagnosis, treatment, or clinical advice.
                     </p>

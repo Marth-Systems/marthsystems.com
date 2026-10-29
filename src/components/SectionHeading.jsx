@@ -1,6 +1,6 @@
 import ScrollReveal from "./ScrollReveal";
 
-export default function SectionHeading({ eyebrow, title, description, align = "center", light = false }) {
+export default function SectionHeading({ eyebrow, title, description, align = "center", light = true }) {
     const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
     return (
         <div className={`max-w-3xl ${alignClass}`}>

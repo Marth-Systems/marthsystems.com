@@ -15,20 +15,6 @@ const NAV_LINKS = [
     { label: "Support", full: "Patient Support", path: "/patient-support" },
 ];
 
-const DARK_HERO_ROUTES = new Set([
-    "/credentialing",
-    "/provider-enrollment",
-    "/provider-contracting",
-    "/billing",
-    "/ar-management",
-    "/prior-authorization",
-    "/patient-support",
-    "/about",
-    "/careers",
-    "/contact",
-    "/blog",
-]);
-
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
@@ -50,18 +36,18 @@ export default function Navbar() {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
-    const isDark = !scrolled && !open && (DARK_HERO_ROUTES.has(location.pathname) || location.pathname.startsWith("/blog"));
-
     return (
         <header
             className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-                scrolled || open ? "glass shadow-premium border-b border-white/40" : "bg-transparent"
+                scrolled || open
+                    ? "bg-[#040A1C]/85 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+                    : "bg-transparent"
             }`}
         >
             <nav className="mx-auto max-w-7xl 2xl:max-w-[1440px] px-5 sm:px-6 lg:px-8 2xl:px-10">
                 <div className="flex h-16 lg:h-20 items-center justify-between">
                     <Link to="/" aria-label="Marth Systems home" className="shrink-0">
-                        <Wordmark light={isDark} />
+                        <Wordmark light={true} />
                     </Link>
 
                     {/* Desktop nav */}
@@ -72,12 +58,10 @@ export default function Navbar() {
                                 to={link.path}
                                 end={link.path === "/"}
                                 className={({ isActive }) =>
-                                    `px-2.5 2xl:px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
+                                    `px-2.5 2xl:px-3.5 py-2 text-sm font-medium rounded-lg transition-all ${
                                         isActive
-                                            ? isDark ? "text-teal-300 font-semibold" : "text-teal-700 font-semibold"
-                                            : isDark
-                                                ? "text-slate-200 hover:text-white hover:bg-white/10"
-                                                : "text-slate-600 hover:text-navy-900 hover:bg-slate-100/70"
+                                            ? "text-teal-300 bg-teal-500/10 font-semibold"
+                                            : "text-slate-200 hover:text-white hover:bg-white/10"
                                     }`
                                 }
                             >
@@ -90,11 +74,7 @@ export default function Navbar() {
                         <Link
                             to="/contact"
                             onClick={() => trackEvent("primary_cta_click", { location: "navbar" })}
-                            className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-premium transition-all hover:shadow-premium-lg ${
-                                isDark
-                                    ? "bg-teal-500 text-navy-950 hover:bg-teal-400"
-                                    : "bg-navy-900 text-white hover:bg-navy-800"
-                            }`}
+                            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-5 py-2.5 text-sm font-bold text-navy-950 shadow-premium transition-all hover:brightness-110 hover:scale-[1.02]"
                         >
                             Request a Consultation
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -104,9 +84,7 @@ export default function Navbar() {
                     {/* Mobile toggle */}
                     <button
                         onClick={() => setOpen((v) => !v)}
-                        className={`xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-md transition-colors ${
-                            isDark ? "text-white hover:bg-white/10" : "text-navy-900 hover:bg-slate-100"
-                        }`}
+                        className="xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-white hover:bg-white/10 transition-colors"
                         aria-label={open ? "Close menu" : "Open menu"}
                         aria-expanded={open}
                     >
@@ -117,7 +95,7 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {open && (
-                <div className="xl:hidden glass border-t border-white/40">
+                <div className="xl:hidden bg-[#040A1C]/95 backdrop-blur-2xl border-t border-white/10">
                     <div className="px-5 py-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
                         <div className="flex flex-col gap-1">
                             {NAV_LINKS.map((link) => (
@@ -126,9 +104,10 @@ export default function Navbar() {
                                     to={link.path}
                                     end={link.path === "/"}
                                     className={({ isActive }) =>
-                                        `px-4 py-3 text-base font-medium rounded-lg transition-colors ${isActive
-                                            ? "bg-teal-50 text-teal-700"
-                                            : "text-slate-700 hover:bg-slate-100"
+                                        `px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                                            isActive
+                                                ? "bg-teal-500/15 text-teal-300 border border-teal-500/30 font-semibold"
+                                                : "text-slate-200 hover:bg-white/10 hover:text-white"
                                         }`
                                     }
                                 >
@@ -139,7 +118,7 @@ export default function Navbar() {
                         <Link
                             to="/contact"
                             onClick={() => trackEvent("primary_cta_click", { location: "navbar_mobile" })}
-                            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-sm font-semibold text-white"
+                            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-teal-500 to-cyan-500 px-5 py-3 text-sm font-bold text-navy-950 shadow-premium"
                         >
                             Request a Consultation
                             <ArrowRight className="h-4 w-4" />
