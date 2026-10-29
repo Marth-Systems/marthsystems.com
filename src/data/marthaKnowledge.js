@@ -134,7 +134,7 @@ export const PAGE_CONTEXT_TIPS = {
     },
     "/contact": {
         badge: "Viewing Contact",
-        prompt: "Ready to connect? You can submit the consultation form on this page or call us at (609) 337-4723.",
+        prompt: "Ready to connect? You can submit the consultation form on this page or email us at info@marthsystems.com.",
         suggestedQuery: "contact",
     },
 };
@@ -484,13 +484,12 @@ export const MARTHA_SERVICES = [
 export const GENERAL_INTENTS = [
     {
         id: "intent-contact",
-        keywords: ["contact", "phone", "call", "email", "address", "location", "reach", "talk to human", "consultation", "quote", "pricing", "cost", "demo", "schedule"],
+        keywords: ["contact", "email", "address", "location", "reach", "talk to human", "consultation", "quote", "pricing", "cost", "demo", "schedule"],
         title: "Connect with Marth Systems",
-        answer: "You can reach our team directly by phone, email, or through our consultation form. We typically respond within 1 business day.",
+        answer: "You can reach our team directly by email or through our consultation form. We typically respond within 1 business day.",
         bullets: [
-            "Phone: (609) 337-4723 (Mon – Fri, 9:00 AM – 5:00 PM EST)",
             "Email: info@marthsystems.com",
-            "Headquarters: 252 Nassau St, Floor 2, Princeton, NJ 08542",
+            "Response within 1 business day",
         ],
         route: "/contact",
         routeLabel: "Open Consultation Form",
@@ -512,7 +511,7 @@ export const GENERAL_INTENTS = [
         id: "intent-about",
         keywords: ["about", "who are you", "company", "marth systems", "hipaa", "security", "specialties", "ehr", "states", "benchmarks"],
         title: "About Marth Systems",
-        answer: "Marth Systems is a specialized healthcare revenue cycle and provider lifecycle operations partner based in Princeton, NJ, supporting healthcare organizations across all 50 states and 40+ medical specialties.",
+        answer: "Marth Systems is a specialized healthcare revenue cycle and provider lifecycle operations partner supporting healthcare organizations across all 50 states and 40+ medical specialties.",
         bullets: [
             "98.5% Clean Claim Rate & 99.2% First-Pass Credentialing Acceptance",
             "100% HIPAA-Compliant workflows working directly inside your existing EHR/PM",
@@ -687,7 +686,7 @@ export function findSmartMarthaAnswer(rawQuery) {
         bullets: [
             "98.5% Clean Claim Rate & 99.2% First-Pass Credentialing Acceptance",
             "Use the 'Diagnose' tab above to match your practice bottleneck in 1 click",
-            "Or connect directly with our operations team at (609) 337-4723",
+            "Or connect directly with our operations team at info@marthsystems.com",
         ],
         route: "/contact",
         routeLabel: "Request a Consultation",

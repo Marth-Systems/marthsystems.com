@@ -21,8 +21,20 @@ import Contact from "@/pages/Contact";
 import ThankYou from "@/pages/ThankYou";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import Maintenance from "@/pages/Maintenance";
+
+// Set to true so all routes display the Maintenance page (set VITE_MAINTENANCE_MODE=false or change to false to restore the full website)
+const SITE_MAINTENANCE_MODE = import.meta.env.VITE_MAINTENANCE_MODE !== "false";
 
 function App() {
+    if (SITE_MAINTENANCE_MODE) {
+        return (
+            <Router>
+                <Maintenance />
+            </Router>
+        );
+    }
+
     return (
         <QueryClientProvider client={queryClientInstance}>
             <Router>
@@ -45,6 +57,8 @@ function App() {
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/thank-you" element={<ThankYou />} />
                     </Route>
+                    <Route path="/maintenance" element={<Maintenance />} />
+                    <Route path="/under-development" element={<Maintenance />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </Router>
